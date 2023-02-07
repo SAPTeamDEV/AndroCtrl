@@ -22,7 +22,7 @@ internal partial class Adb
         const string CMD_DEVICES = "adb devices -l";
 
         internal static Bitmap CreateQrCode()
-        {
+{
             QRCodeGenerator qrGenerator = new();
             string FormattedQR = string.Format(FORMAT_QR, NAME, PASS);
             QRCodeData qrCodeData = qrGenerator.CreateQrCode(FormattedQR, QRCodeGenerator.ECCLevel.Q);
@@ -31,7 +31,7 @@ internal partial class Adb
         }
 
         internal static void Listen()
-        {
+    {
 
         }
     }
