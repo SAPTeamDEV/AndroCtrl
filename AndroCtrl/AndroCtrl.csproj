@@ -13,6 +13,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Makaretu.Dns.Multicast" Version="0.27.0" />
+    <PackageReference Include="QRCoder" Version="1.4.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\AndroCtrl.Protocols.AndroidDebugBridge\AndroCtrl.Protocols.AndroidDebugBridge\AndroCtrl.Protocols.AndroidDebugBridge.csproj" />
   </ItemGroup>
 
