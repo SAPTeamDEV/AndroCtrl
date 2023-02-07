@@ -18,12 +18,16 @@ namespace AndroCtrl.Connection
 
         public readonly List<DnsEndPoint> Endpoints = new();
 
-        event Action<DnsEndPoint>? NetworkFound;
+        public event Action<DnsEndPoint>? NetworkFound;
 
         public MulticastDNS(string type)
         {
             mdns = new();
             sd = new(mdns);
+
+            sd.ServiceDiscovered += OnServiceDiscovery;
+            mdns.AnswerReceived += OnAnswerReceive;
+
             this.type = type;
          }
 
@@ -55,7 +59,7 @@ namespace AndroCtrl.Connection
             }
         }
 
-        public DnsEndPoint AddEndpoint(string host, int port)
+        DnsEndPoint AddEndpoint(string host, int port)
         {
             DnsEndPoint ep = new(host, port);
             if (!Endpoints.Contains(ep))
@@ -64,6 +68,17 @@ namespace AndroCtrl.Connection
                 return ep;
             }
             return null;
+        }
+
+        public void Scan()
+        {
+            mdns.Start();
+        }
+
+        public void Stop()
+        {
+            sd.Dispose();
+            mdns.Stop();
         }
     }
 }

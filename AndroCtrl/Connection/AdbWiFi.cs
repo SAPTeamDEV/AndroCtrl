@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,9 +18,7 @@ internal partial class Adb
         const string PASS = "123456";
         const string FORMAT_QR = "WIFI:T:ADB;S:{0};P:{1};;";
 
-        const string CMD_SHOW = "qrencode -t UTF8 '%s'";
-        const string CMD_PAIR = "adb pair %s:%s %s";
-        const string CMD_DEVICES = "adb devices -l";
+        MulticastDNS mdns;
 
         internal static Bitmap CreateQrCode()
 {
@@ -30,9 +29,17 @@ internal partial class Adb
             return qrCode.GetGraphic(20);
         }
 
-        internal static void Listen()
-    {
+        internal void Listen(DnsEndPoint ep)
+        {
+            Client.Pair(ep, int.Parse(PASS));
+            mdns.Stop();
+        }
 
+        internal void StartScan()
+        {
+            mdns = new(TYPE);
+            mdns.NetworkFound += Listen;
+            mdns.Scan();
         }
     }
 }
