@@ -9,7 +9,7 @@ using AndroCtrl.Protocols.AndroidDebugBridge;
 
 namespace AndroCtrl.Connection;
 
-internal class Adb
+internal partial class Adb
 {
     internal static AdbClient Client { get; private set; }
     internal static AdbServer Server { get; private set; }
