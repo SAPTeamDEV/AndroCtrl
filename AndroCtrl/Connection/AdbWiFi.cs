@@ -20,6 +20,8 @@ internal partial class Adb
 
         MulticastDNS mdns;
 
+        internal event Action? OnPaired;
+
         internal static Bitmap CreateQrCode()
 {
             QRCodeGenerator qrGenerator = new();
@@ -33,6 +35,7 @@ internal partial class Adb
         {
             Client.Pair(ep, int.Parse(PASS));
             mdns.Stop();
+            OnPaired?.Invoke();
         }
 
         internal void StartScan()
