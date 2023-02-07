@@ -37,6 +37,7 @@
             this.QRCodeBox.Location = new System.Drawing.Point(250, 131);
             this.QRCodeBox.Name = "QRCodeBox";
             this.QRCodeBox.Size = new System.Drawing.Size(250, 250);
+            this.QRCodeBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.QRCodeBox.TabIndex = 0;
             this.QRCodeBox.TabStop = false;
             // 

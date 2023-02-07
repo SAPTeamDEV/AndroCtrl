@@ -11,4 +11,9 @@ public partial class Form1 : Form
     {
         Plugin.PluginWorker.LoadPlugins();
     }
+
+    private void button1_Click(object sender, EventArgs e)
+    {
+        new Dialogs.QRCodePair().ShowDialog();
+    }
 }
