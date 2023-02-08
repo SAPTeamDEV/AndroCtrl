@@ -5,10 +5,12 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <StartupObject>MulticastDNSDiscovery.EntryPoint</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Makaretu.Dns.Multicast" Version="0.27.0" />
+    <PackageReference Include="Tmds.MDns" Version="0.7.1" />
   </ItemGroup>
 
 </Project>

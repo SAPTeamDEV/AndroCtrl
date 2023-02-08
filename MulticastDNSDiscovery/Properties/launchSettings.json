@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "DNS Discovery": {
+      "commandName": "Project"
+    },
+    "Service Browser": {
+      "commandName": "Project",
+      "commandLineArgs": "browser _adb-tls-connect._tcp.local"
+    }
+  }
+}
