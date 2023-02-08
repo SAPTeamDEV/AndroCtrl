@@ -9,9 +9,9 @@ namespace AndroCtrl.Connection
 {
     internal partial class Adb
     {
-        const string TYPE = "_adb-tls-connect._tcp.local";
+        const string TYPE = "_adb-tls-connect._tcp";
 
-        MulticastDNS mdns;
+        DnsServiceBrowser mdns;
 
         internal void ScanDevices()
         {

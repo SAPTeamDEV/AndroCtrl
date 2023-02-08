@@ -13,12 +13,12 @@ internal partial class Adb
 {
     internal class Wifi
     {
-        const string TYPE = "_adb-tls-pairing._tcp.local.";
+        const string TYPE = "_adb-tls-pairing._tcp";
         const string NAME = "debug";
         const string PASS = "123456";
         const string FORMAT_QR = "WIFI:T:ADB;S:{0};P:{1};;";
 
-        MulticastDNS mdns;
+        DnsServiceBrowser mdns;
 
         internal event Action? OnPaired;
 
