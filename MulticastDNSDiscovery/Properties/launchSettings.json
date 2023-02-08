@@ -5,7 +5,7 @@
     },
     "Service Browser": {
       "commandName": "Project",
-      "commandLineArgs": "browser _adb-tls-connect._tcp.local"
+      "commandLineArgs": "browser _adb-tls-connect._tcp"
     }
   }
 }
