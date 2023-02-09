@@ -9,7 +9,7 @@ namespace AndroCtrl.Connection
 {
     internal partial class Adb
     {
-        const string TYPE = "_adb-tls-connect._tcp";
+        internal const string TYPE = "_adb-tls-connect._tcp";
 
         DnsServiceBrowser mdns;
 
