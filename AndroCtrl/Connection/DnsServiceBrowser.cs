@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Net;
 
 using Tmds.MDns;
 
 namespace AndroCtrl.Connection;
 
-public class DnsServiceBrowser
+public class DnsServiceBrowser : IMulticastDNS
 {
-    ServiceBrowser mdns;
-    string type;
+    private ServiceBrowser mdns;
+    private string type;
 
-    public readonly Dictionary<string, DnsEndPoint> Endpoints = new();
+    public Dictionary<string, DnsEndPoint> Endpoints { get; } = new();
 
     public event Action<DnsEndPoint>? NetworkFound;
 
@@ -31,7 +26,7 @@ public class DnsServiceBrowser
 
     public DnsServiceBrowser() : this(string.Empty) { }
 
-    void OnServiceAdded(object? sender, ServiceAnnouncementEventArgs e)
+    private void OnServiceAdded(object? sender, ServiceAnnouncementEventArgs e)
     {
         var ep = AddEndpoint(e.Announcement.Addresses[0].ToString(), e.Announcement.Port);
         if (ep != null)
@@ -40,12 +35,12 @@ public class DnsServiceBrowser
         }
     }
 
-    void OnServiceRemoved(object? sender, ServiceAnnouncementEventArgs e)
+    private void OnServiceRemoved(object? sender, ServiceAnnouncementEventArgs e)
     {
         Endpoints.Remove(e.Announcement.Addresses[0].ToString());
     }
 
-    DnsEndPoint AddEndpoint(string host, int port)
+    private DnsEndPoint AddEndpoint(string host, int port)
     {
         DnsEndPoint ep = new(host, port);
         if (!Endpoints.ContainsKey(host) || !Endpoints.ContainsValue(ep))

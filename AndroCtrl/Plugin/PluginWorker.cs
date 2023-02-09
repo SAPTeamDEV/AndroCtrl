@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
+﻿using System.Reflection;
 
 namespace AndroCtrl.Plugin;
 
@@ -27,13 +23,13 @@ internal class PluginWorker
         }
     }
 
-    static Assembly LoadPlugin(string pluginLocation)
+    private static Assembly LoadPlugin(string pluginLocation)
     {
         PluginLoadContext loadContext = new(pluginLocation);
         return loadContext.LoadFromAssemblyName(AssemblyName.GetAssemblyName(pluginLocation));
     }
 
-    static IEnumerable<ICommand> CreateCommands(Assembly assembly)
+    private static IEnumerable<ICommand> CreateCommands(Assembly assembly)
     {
         int count = 0;
 

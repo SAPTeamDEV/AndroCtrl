@@ -1,78 +1,67 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Net;
 
 using AndroCtrl.Connection;
 
-namespace AndroCtrl.Dialogs
+namespace AndroCtrl.Dialogs;
+
+public partial class QRCodePair : Form
 {
-    public partial class QRCodePair : Form
+    private Adb.QRCodePair adbPair;
+    private DnsServiceBrowser mdns;
+
+    public QRCodePair()
     {
-        Adb.Wifi adbWifi;
-        DnsServiceBrowser mdns;
+        InitializeComponent();
+    }
 
-        public QRCodePair()
-        {
-            InitializeComponent();
-        }
+    private void QRCodePair_Load(object sender, EventArgs e)
+    {
+        adbPair = new();
+        adbPair.OnPaired += Close;
 
-        void EnterEndpoint(DnsEndPoint ep)
+        mdns = new(DnsServiceTypes.DevicePairing);
+        mdns.NetworkFound += (DnsEndPoint ep) =>
         {
             HostName.Text = ep.Host;
             HostName.Enabled = false;
 
             Port.Text = ep.Port.ToString();
             Port.Enabled = false;
-        }
-
-        private void QRCodePair_Load(object sender, EventArgs e)
-        {
-            adbWifi = new();
-            adbWifi.OnPaired += Close;
-
-            mdns = new(Adb.Wifi.TYPE);
-            mdns.NetworkFound += EnterEndpoint;
-
-        }
-
-        private void QRCodePair_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            adbWifi.StopScan();
             mdns.Stop();
-        }
+        };
 
-        private void QRPairing_Enter(object sender, EventArgs e)
-        {
-            QRCodeBox.Image = Adb.Wifi.CreateQrCode();
-            adbWifi.StartScan();
-        }
+    }
 
-        private void QRPairing_Leave(object sender, EventArgs e)
-        {
-            adbWifi.StopScan();
-        }
+    private void QRCodePair_FormClosed(object sender, FormClosedEventArgs e)
+    {
+        adbPair.StopScan();
+        mdns.Stop();
+    }
 
-        private void ManualPairing_Enter(object sender, EventArgs e)
-        {
-            mdns.Scan();
-        }
+    private void QRPairing_Enter(object sender, EventArgs e)
+    {
+        QRCodeBox.Image = adbPair.CreateQrCode();
+        adbPair.StartScan();
+    }
 
-        private void ManualPairing_Leave(object sender, EventArgs e)
-        {
-            mdns.Stop();
-        }
+    private void QRPairing_Leave(object sender, EventArgs e)
+    {
+        adbPair.StopScan();
+    }
 
-        private void Pair_Click(object sender, EventArgs e)
-        {
-            Adb.Client.Pair(new(HostName.Text, int.Parse(Port.Text)), int.Parse(PairCode.Text));
-            this.Close();
-        }
+    private void ManualPairing_Enter(object sender, EventArgs e)
+    {
+        mdns.Scan();
+    }
+
+    private void ManualPairing_Leave(object sender, EventArgs e)
+    {
+        mdns.Stop();
+    }
+
+    private void Pair_Click(object sender, EventArgs e)
+    {
+        Adb.Client.Pair(new(HostName.Text, int.Parse(Port.Text)), int.Parse(PairCode.Text));
+        this.Close();
     }
 }

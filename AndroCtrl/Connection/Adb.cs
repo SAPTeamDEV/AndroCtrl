@@ -1,24 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
-
-using AndroCtrl.Protocols.AndroidDebugBridge;
+﻿using AndroCtrl.Protocols.AndroidDebugBridge;
 
 namespace AndroCtrl.Connection;
 
 internal partial class Adb
 {
-    internal static AdbClient Client { get; private set; }
-    internal static AdbServer Server { get; private set; }
+    internal static AdbClient Client { get; }
+    internal static AdbServer Server { get; }
 
-    static string serverPath = @"bin\adb.exe";
-    static string localServer = @"C:\Windows\adb\adb.exe";
-
-    internal static List<DeviceData> Devices { get; private set; } = new List<DeviceData>();
-    internal static List<DeviceData> LiveDevices => Client.GetDevices();
+    private static string serverPath = @"bin\adb.exe";
+    private static string localServer = @"C:\Windows\adb\adb.exe";
 
     static Adb()
     {
