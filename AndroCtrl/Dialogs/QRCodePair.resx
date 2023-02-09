@@ -57,4 +57,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label1.Text" xml:space="preserve">
+    <value>1: Connect to the same network with your Phone and PC.
+2: Activate Developer options.
+3: Enable ADB WiFi at
+Developer Options &gt; Wireless debugging
+(Note: this Feature only supported in Android 11 and later.)
+4: Tap "Pair device with QR Code and Scan this QR Code:
+</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>1: Connect to the same network with your Phone and PC.
+2: Activate Developer options.
+3: Enable ADB WiFi at
+Developer Options &gt; Wireless debugging
+(Note: this Feature only supported in Android 11 and later.)
+4: Tap "Pair device with Pairing Code" and fill Below Form.
+
+IP Address and Port usally auto filled.
+</value>
+  </data>
 </root>

@@ -44,5 +44,10 @@ internal partial class Adb
             mdns.NetworkFound += Listen;
             mdns.Scan();
         }
+
+        internal void StopScan()
+        {
+            mdns.Stop();
+        }
     }
 }
