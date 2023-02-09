@@ -14,7 +14,7 @@ public class DnsServiceBrowser
     ServiceBrowser mdns;
     string type;
 
-    public readonly List<DnsEndPoint> Endpoints = new();
+    public readonly Dictionary<string, DnsEndPoint> Endpoints = new();
 
     public event Action<DnsEndPoint>? NetworkFound;
 
@@ -42,15 +42,15 @@ public class DnsServiceBrowser
 
     void OnServiceRemoved(object? sender, ServiceAnnouncementEventArgs e)
     {
-        Endpoints.Remove(new(e.Announcement.Addresses[0].ToString(), e.Announcement.Port));
+        Endpoints.Remove(e.Announcement.Addresses[0].ToString());
     }
 
     DnsEndPoint AddEndpoint(string host, int port)
     {
         DnsEndPoint ep = new(host, port);
-        if (!Endpoints.Contains(ep))
+        if (!Endpoints.ContainsKey(host) || !Endpoints.ContainsValue(ep))
         {
-            Endpoints.Add(ep);
+            Endpoints[host] = ep;
             return ep;
         }
         return null;

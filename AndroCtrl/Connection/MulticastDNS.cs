@@ -16,7 +16,7 @@ namespace AndroCtrl.Connection
         ServiceDiscovery sd;
         string type;
 
-        public readonly List<DnsEndPoint> Endpoints = new();
+        public readonly Dictionary<string, DnsEndPoint> Endpoints = new();
 
         public event Action<DnsEndPoint>? NetworkFound;
 
@@ -62,9 +62,9 @@ namespace AndroCtrl.Connection
         DnsEndPoint AddEndpoint(string host, int port)
         {
             DnsEndPoint ep = new(host, port);
-            if (!Endpoints.Contains(ep))
+            if (!Endpoints.ContainsKey(host))
             {
-                Endpoints.Add(ep);
+                Endpoints[host] = ep;
                 return ep;
             }
             return null;
