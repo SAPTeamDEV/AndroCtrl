@@ -160,6 +160,7 @@ partial class MainWindow
             this.PairButton.TabIndex = 1;
             this.PairButton.Text = "&Pair New Device";
             this.PairButton.UseVisualStyleBackColor = true;
+            this.PairButton.Click += new System.EventHandler(this.PairButton_Click);
             // 
             // TCPConnectButton
             // 

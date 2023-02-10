@@ -44,4 +44,9 @@ public partial class MainWindow : Form
         Adb.DefaultDevice = (Android.Device)DeviceSelector.SelectedItem;
         RefreshDevicesGroup();
     }
+
+    private void PairButton_Click(object sender, EventArgs e)
+    {
+        new Dialogs.QRCodePair().ShowDialog();
+    }
 }
