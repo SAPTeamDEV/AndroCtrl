@@ -12,6 +12,7 @@ public partial class MainWindow : Form
     private void Form1_Load(object sender, EventArgs e)
     {
         Adb.UpdateDevices();
+        RefreshDevicesGroup();
     }
 
     public void RefreshDevicesGroup()
