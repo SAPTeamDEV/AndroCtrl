@@ -64,10 +64,7 @@ public class DnsServiceDiscovery : IMulticastDNS
         return null;
     }
 
-    public void Scan()
-    {
-        mdns.Start();
-    }
+    public void Scan() => mdns.Start();
 
     public void Stop()
     {

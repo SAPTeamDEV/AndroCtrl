@@ -9,18 +9,9 @@ public partial class Form1 : Form
         InitializeComponent();
     }
 
-    private void Form1_Load(object sender, EventArgs e)
-    {
-        Plugin.PluginWorker.LoadPlugins();
-    }
+    private void Form1_Load(object sender, EventArgs e) => Plugin.PluginWorker.LoadPlugins();
 
-    private void button1_Click(object sender, EventArgs e)
-    {
-        new Dialogs.QRCodePair().ShowDialog();
-    }
+    private void button1_Click(object sender, EventArgs e) => new Dialogs.QRCodePair().ShowDialog();
 
-    private void button2_Click(object sender, EventArgs e)
-    {
-        new Adb().ScanDevices();
-    }
+    private void button2_Click(object sender, EventArgs e) => new Services.RemoteConnectionService().Start();
 }

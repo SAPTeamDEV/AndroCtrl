@@ -1,12 +1,13 @@
 ﻿using System.Net;
 
 using AndroCtrl.Connection;
+using AndroCtrl.Services;
 
 namespace AndroCtrl.Dialogs;
 
 public partial class QRCodePair : Form
 {
-    private Adb.QRCodePair adbPair;
+    private QRCodePairingService adbPair;
     private DnsServiceBrowser mdns;
 
     public QRCodePair()
@@ -17,7 +18,7 @@ public partial class QRCodePair : Form
     private void QRCodePair_Load(object sender, EventArgs e)
     {
         adbPair = new();
-        adbPair.OnPaired += Close;
+        adbPair.TaskExecuted += (sender, e) => Close();
 
         mdns = new(DnsServiceTypes.DevicePairing);
         mdns.NetworkFound += (DnsEndPoint ep) =>
@@ -34,30 +35,21 @@ public partial class QRCodePair : Form
 
     private void QRCodePair_FormClosed(object sender, FormClosedEventArgs e)
     {
-        adbPair.StopScan();
+        adbPair.Stop();
         mdns.Stop();
     }
 
     private void QRPairing_Enter(object sender, EventArgs e)
     {
         QRCodeBox.Image = adbPair.CreateQrCode();
-        adbPair.StartScan();
+        adbPair.Start();
     }
 
-    private void QRPairing_Leave(object sender, EventArgs e)
-    {
-        adbPair.StopScan();
-    }
+    private void QRPairing_Leave(object sender, EventArgs e) => adbPair.Stop();
 
-    private void ManualPairing_Enter(object sender, EventArgs e)
-    {
-        mdns.Scan();
-    }
+    private void ManualPairing_Enter(object sender, EventArgs e) => mdns.Scan();
 
-    private void ManualPairing_Leave(object sender, EventArgs e)
-    {
-        mdns.Stop();
-    }
+    private void ManualPairing_Leave(object sender, EventArgs e) => mdns.Stop();
 
     private void Pair_Click(object sender, EventArgs e)
     {

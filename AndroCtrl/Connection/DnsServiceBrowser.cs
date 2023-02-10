@@ -35,10 +35,7 @@ public class DnsServiceBrowser : IMulticastDNS
         }
     }
 
-    private void OnServiceRemoved(object? sender, ServiceAnnouncementEventArgs e)
-    {
-        Endpoints.Remove(e.Announcement.Addresses[0].ToString());
-    }
+    private void OnServiceRemoved(object? sender, ServiceAnnouncementEventArgs e) => Endpoints.Remove(e.Announcement.Addresses[0].ToString());
 
     private DnsEndPoint AddEndpoint(string host, int port)
     {
@@ -51,13 +48,7 @@ public class DnsServiceBrowser : IMulticastDNS
         return null;
     }
 
-    public void Scan()
-    {
-        mdns.StartBrowse(type);
-    }
+    public void Scan() => mdns.StartBrowse(type);
 
-    public void Stop()
-    {
-        mdns.StopBrowse();
-    }
+    public void Stop() => mdns.StopBrowse();
 }
