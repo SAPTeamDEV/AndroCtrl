@@ -35,5 +35,12 @@ public static class Adb
                 Devices[device] = Device.CreateNewDevice(device);
             }
         }
+
+        // Device Remove detector MUST be Added here.
+
+        if (Devices.Count > 0 && (DefaultDevice == null || !Devices.ContainsValue(DefaultDevice)))
+        {
+            DefaultDevice = Devices.First().Value;
+        }
     }
 }

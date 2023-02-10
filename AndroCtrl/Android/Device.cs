@@ -18,6 +18,7 @@ public class Device
     public string Model { get; private set; }
     public string Manufacturer { get; private set; }
     public string API { get; private set; }
+    public string Fingerprint { get; private set; }
 
 	public Device(DeviceData deviceData)
     {
@@ -33,6 +34,7 @@ public class Device
         dev.DeviceName = props["ro.product.device"];
         dev.Manufacturer = props["ro.product.manufacturer"];
         dev.API = props["ro.build.version.sdk"];
+        dev.Fingerprint = props["ro.build.fingerprint"];
 
         return dev;
     }
