@@ -22,8 +22,4 @@
     <ProjectReference Include="..\..\AndroCtrl.Protocols.AndroidDebugBridge\AndroCtrl.Protocols.AndroidDebugBridge\AndroCtrl.Protocols.AndroidDebugBridge.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Android\" />
-  </ItemGroup>
-
 </Project>
