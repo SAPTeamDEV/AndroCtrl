@@ -4,6 +4,8 @@ namespace AndroCtrl;
 
 public partial class MainWindow : Form
 {
+    bool isUpdating;
+
     public MainWindow()
     {
         InitializeComponent();
@@ -17,13 +19,14 @@ public partial class MainWindow : Form
 
     public void RefreshDevicesGroup()
     {
-        if (Adb.DefaultDevice != null)
+        if (!isUpdating && Adb.DefaultDevice != null)
         {
+            isUpdating = true;
             DeviceSelector.Items.Clear();
 
             foreach (var device in Adb.Devices)
             {
-                DeviceSelector.Items.Add(device);
+                DeviceSelector.Items.Add(device.Value);
             }
             DeviceSelector.SelectedItem = Adb.DefaultDevice;
 
@@ -33,6 +36,7 @@ public partial class MainWindow : Form
             SDKVersionOut.Text = Adb.DefaultDevice.API;
             BuildFingerprintOut.Text = Adb.DefaultDevice.Fingerprint;
         }
+        isUpdating = false;
     }
 
     private void DeviceSelector_SelectedIndexChanged(object sender, EventArgs e)
