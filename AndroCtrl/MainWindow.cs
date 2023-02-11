@@ -85,12 +85,12 @@ public partial class MainWindow : Form
         Adb.DefaultDevice.Disconnect();
     }
 
-    private void MainWindow_Enter(object sender, EventArgs e)
+    private void MainWindow_Activated(object sender, EventArgs e)
     {
         rcs.Start(true);
     }
 
-    private void MainWindow_Leave(object sender, EventArgs e)
+    private void MainWindow_Deactivate(object sender, EventArgs e)
     {
         rcs.Stop();
     }
