@@ -181,6 +181,7 @@ partial class MainWindow
             this.DeviceSelector.Size = new System.Drawing.Size(218, 23);
             this.DeviceSelector.TabIndex = 2;
             this.DeviceSelector.SelectedIndexChanged += new System.EventHandler(this.DeviceSelector_SelectedIndexChanged);
+            this.DeviceSelector.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DeviceSelector_KeyPress);
             // 
             // MainWindow
             // 

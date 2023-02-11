@@ -55,4 +55,13 @@ public partial class MainWindow : Form
     {
         new TCPConnect().ShowDialog();
     }
+
+    private void DeviceSelector_KeyPress(object sender, KeyPressEventArgs e)
+    {
+        if (e.KeyChar == (char)Keys.F5)
+        {
+            Adb.UpdateDevices();
+            RefreshDevicesGroup();
+        }
+    }
 }
