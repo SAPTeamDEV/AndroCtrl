@@ -14,8 +14,7 @@ public partial class MainWindow : Form
 
     private void Form1_Load(object sender, EventArgs e)
     {
-        Adb.UpdateDevices();
-        RefreshDevicesGroup();
+        Refresh(null, EventArgs.Empty);
     }
 
     public void RefreshDevicesGroup()
@@ -56,12 +55,9 @@ public partial class MainWindow : Form
         new TCPConnect().ShowDialog();
     }
 
-    private void DeviceSelector_KeyPress(object sender, KeyPressEventArgs e)
+    private void Refresh(object? sender, EventArgs e)
     {
-        if (e.KeyChar == (char)Keys.F5)
-        {
-            Adb.UpdateDevices();
-            RefreshDevicesGroup();
-        }
+        Adb.UpdateDevices();
+        RefreshDevicesGroup();
     }
 }

@@ -39,6 +39,7 @@ partial class MainWindow
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.RefreshButton = new System.Windows.Forms.Button();
             this.PairButton = new System.Windows.Forms.Button();
             this.TCPConnectButton = new System.Windows.Forms.Button();
             this.DeviceSelector = new System.Windows.Forms.ComboBox();
@@ -57,6 +58,7 @@ partial class MainWindow
             this.DeviceGroup.Controls.Add(this.label3);
             this.DeviceGroup.Controls.Add(this.label5);
             this.DeviceGroup.Controls.Add(this.label1);
+            this.DeviceGroup.Controls.Add(this.RefreshButton);
             this.DeviceGroup.Controls.Add(this.PairButton);
             this.DeviceGroup.Controls.Add(this.TCPConnectButton);
             this.DeviceGroup.Controls.Add(this.DeviceSelector);
@@ -152,6 +154,16 @@ partial class MainWindow
             this.label1.TabIndex = 1;
             this.label1.Text = "Serial Number:";
             // 
+            // RefreshButton
+            // 
+            this.RefreshButton.Location = new System.Drawing.Point(119, 86);
+            this.RefreshButton.Name = "RefreshButton";
+            this.RefreshButton.Size = new System.Drawing.Size(105, 24);
+            this.RefreshButton.TabIndex = 1;
+            this.RefreshButton.Text = "&Refresh Devices";
+            this.RefreshButton.UseVisualStyleBackColor = true;
+            this.RefreshButton.Click += new System.EventHandler(this.Refresh);
+            // 
             // PairButton
             // 
             this.PairButton.Location = new System.Drawing.Point(119, 56);
@@ -181,7 +193,6 @@ partial class MainWindow
             this.DeviceSelector.Size = new System.Drawing.Size(218, 23);
             this.DeviceSelector.TabIndex = 2;
             this.DeviceSelector.SelectedIndexChanged += new System.EventHandler(this.DeviceSelector_SelectedIndexChanged);
-            this.DeviceSelector.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DeviceSelector_KeyPress);
             // 
             // MainWindow
             // 
@@ -213,4 +224,5 @@ partial class MainWindow
     private Label label3;
     private TextBox BuildFingerprintOut;
     private Label label5;
+    private Button RefreshButton;
 }
