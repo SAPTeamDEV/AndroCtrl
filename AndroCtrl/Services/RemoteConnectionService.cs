@@ -12,7 +12,11 @@ public class RemoteConnectionService : Service, IService
     public RemoteConnectionService() : base()
     {
         mdns = new(DnsServiceTypes.AdbConnect);
-        mdns.NetworkFound += (ep) => Adb.Client.Connect(ep);
+        mdns.NetworkFound += (ep) =>
+        {
+            Adb.Client.Connect(ep);
+            OnExecute(ServiceEventArgs.Empty);
+        };
     }
 
     protected override void Run(object? sender, IServiceEventArgs e)
