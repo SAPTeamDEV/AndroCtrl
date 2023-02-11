@@ -41,6 +41,7 @@ partial class MainWindow
             this.label1 = new System.Windows.Forms.Label();
             this.RefreshButton = new System.Windows.Forms.Button();
             this.PairButton = new System.Windows.Forms.Button();
+            this.DisconnectButtun = new System.Windows.Forms.Button();
             this.TCPConnectButton = new System.Windows.Forms.Button();
             this.DeviceSelector = new System.Windows.Forms.ComboBox();
             this.DeviceGroup.SuspendLayout();
@@ -60,6 +61,7 @@ partial class MainWindow
             this.DeviceGroup.Controls.Add(this.label1);
             this.DeviceGroup.Controls.Add(this.RefreshButton);
             this.DeviceGroup.Controls.Add(this.PairButton);
+            this.DeviceGroup.Controls.Add(this.DisconnectButtun);
             this.DeviceGroup.Controls.Add(this.TCPConnectButton);
             this.DeviceGroup.Controls.Add(this.DeviceSelector);
             this.DeviceGroup.Location = new System.Drawing.Point(12, 12);
@@ -174,6 +176,17 @@ partial class MainWindow
             this.PairButton.UseVisualStyleBackColor = true;
             this.PairButton.Click += new System.EventHandler(this.PairButton_Click);
             // 
+            // DisconnectButtun
+            // 
+            this.DisconnectButtun.Enabled = false;
+            this.DisconnectButtun.Location = new System.Drawing.Point(6, 86);
+            this.DisconnectButtun.Name = "DisconnectButtun";
+            this.DisconnectButtun.Size = new System.Drawing.Size(105, 24);
+            this.DisconnectButtun.TabIndex = 1;
+            this.DisconnectButtun.Text = "Disconnect";
+            this.DisconnectButtun.UseVisualStyleBackColor = true;
+            this.DisconnectButtun.Click += new System.EventHandler(this.DisconnectButtun_Click);
+            // 
             // TCPConnectButton
             // 
             this.TCPConnectButton.Location = new System.Drawing.Point(6, 56);
@@ -225,4 +238,5 @@ partial class MainWindow
     private TextBox BuildFingerprintOut;
     private Label label5;
     private Button RefreshButton;
+    private Button DisconnectButtun;
 }

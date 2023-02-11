@@ -30,6 +30,8 @@ public partial class MainWindow : Form
             }
             DeviceSelector.SelectedItem = Adb.DefaultDevice;
 
+            DisconnectButtun.Enabled = Adb.DefaultDevice.ConnectionType == ConnectionTypes.Wifi;
+            label1.Text = Adb.DefaultDevice.IsUsbDevice ? "Serial Number:" : "IP Address:";
             DeviceModelOut.Text = Adb.DefaultDevice.Model;
             ManufacturerOut.Text = Adb.DefaultDevice.Manufacturer;
             SerialOut.Text = Adb.DefaultDevice.DeviceID.Serial;
@@ -59,5 +61,10 @@ public partial class MainWindow : Form
     {
         Adb.UpdateDevices();
         RefreshDevicesGroup();
+    }
+
+    private void DisconnectButtun_Click(object sender, EventArgs e)
+    {
+        Adb.DefaultDevice.Disconnect();
     }
 }

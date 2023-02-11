@@ -23,7 +23,10 @@ public class Device
     public DnsEndPoint EndPoint { get; private set; }
     public ConnectionTypes ConnectionType { get; private set; }
 
-	public Device(DeviceData deviceData)
+    public bool IsUsbDevice => ConnectionType == ConnectionTypes.Usb;
+    public bool IsWifiDevice => ConnectionType == ConnectionTypes.Wifi;
+
+    public Device(DeviceData deviceData)
     {
         DeviceID = deviceData;
     }
@@ -54,5 +57,17 @@ public class Device
     public override string ToString()
     {
         return string.Format("{0} | {1}", DeviceName, Model);
+    }
+
+    public void Disconnect()
+    {
+        if (IsWifiDevice)
+        {
+            Adb.Client.Disconnect(EndPoint);
+        }
+        else
+        {
+            throw new EntryPointNotFoundException();
+        }
     }
 }
