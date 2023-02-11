@@ -36,7 +36,14 @@ public static class Adb
             }
         }
 
-        // Device Remove detector MUST be Added here.
+        var devCopy = new Dictionary<DeviceData, Device>(Devices);
+        foreach (var device in devCopy)
+        {
+            if (!devices.Contains(device.Key))
+            {
+                Devices.Remove(device.Key);
+            }
+        }
 
         if (Devices.Count > 0 && (DefaultDevice == null || !Devices.ContainsValue(DefaultDevice)))
         {
