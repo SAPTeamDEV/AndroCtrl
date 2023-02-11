@@ -34,7 +34,19 @@ public static class Adb
         {
             if (!Devices.ContainsKey(device))
             {
-                Devices[device] = Device.CreateNewDevice(device);
+                var devObj = Device.CreateNewDevice(device);
+                if (devObj.DeviceID.State == DeviceState.Offline)
+                {
+                    try
+                    {
+                        devObj.Disconnect();
+                    }
+                    catch (Exception) { }
+                }
+                else
+                {
+                    Devices[device] = devObj;
+                }
             }
         }
 

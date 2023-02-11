@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using AndroCtrl.Connection;
 using AndroCtrl.Protocols.AndroidDebugBridge;
 using AndroCtrl.Protocols.AndroidDebugBridge.DeviceCommands;
+using AndroCtrl.Protocols.AndroidDebugBridge.Exceptions;
 
 namespace AndroCtrl.Android;
 
@@ -34,13 +35,6 @@ public class Device
     public static Device CreateNewDevice(DeviceData device)
     {
         Device dev = new(device);
-        var props = Adb.Client.GetProperties(device);
-
-        dev.Model = props["ro.product.model"];
-        dev.DeviceName = props["ro.product.device"];
-        dev.Manufacturer = props["ro.product.manufacturer"];
-        dev.API = props["ro.build.version.sdk"];
-        dev.Fingerprint = props["ro.build.fingerprint"];
 
         string[] rawEndpoint = device.Serial.Split(":");
         IPAddress? ip;
@@ -50,6 +44,19 @@ public class Device
             dev.EndPoint = new(ip.ToString(), port);
             dev.ConnectionType = ConnectionTypes.Wifi;
         }
+
+        if (device.State == DeviceState.Offline)
+        {
+            return dev;
+        }
+
+        var props = Adb.Client.GetProperties(device);
+
+        dev.Model = props["ro.product.model"];
+        dev.DeviceName = props["ro.product.device"];
+        dev.Manufacturer = props["ro.product.manufacturer"];
+        dev.API = props["ro.build.version.sdk"];
+        dev.Fingerprint = props["ro.build.fingerprint"];
 
         return dev;
     }
