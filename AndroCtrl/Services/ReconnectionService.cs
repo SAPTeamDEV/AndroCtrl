@@ -15,18 +15,15 @@ namespace AndroCtrl.Services
     {
         public ReconnectionService(DnsEndPoint ep, int delay)
         {
-            runEventArgs = new ReconnectServiceEventArgs(delay);
+            runEventArgs = new ReconnectServiceEventArgs(ep, delay);
         }
 
-        protected override void Finish(object? sender, IServiceEventArgs e)
-        {
-            
-        }
+        protected override void Finish(object? sender, IServiceEventArgs e) { }
 
         protected override async void Run(object? sender, IServiceEventArgs e)
         {
             Status = ServiceStatus.Running;
-            ReconnectServiceEventArgs args = e;
+            ReconnectServiceEventArgs args = (ReconnectServiceEventArgs)e;
             DnsEndPoint ep = args.EndPoint;
             int delay = args.Delay;
 
@@ -36,6 +33,7 @@ namespace AndroCtrl.Services
                 try
                 {
                     Adb.Client.Connect(ep);
+                    OnExecute(ServiceEventArgs.Empty);
                 }
                 catch (Exception) { }
             }

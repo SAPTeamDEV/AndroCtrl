@@ -170,6 +170,7 @@ partial class MainWindow
             this.TCPConnectButton.TabIndex = 1;
             this.TCPConnectButton.Text = "TCP/IP &Connect";
             this.TCPConnectButton.UseVisualStyleBackColor = true;
+            this.TCPConnectButton.Click += new System.EventHandler(this.TCPConnectButton_Click);
             // 
             // DeviceSelector
             // 

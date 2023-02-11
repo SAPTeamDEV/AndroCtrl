@@ -1,4 +1,5 @@
 using AndroCtrl.Connection;
+using AndroCtrl.Dialogs;
 
 namespace AndroCtrl;
 
@@ -47,6 +48,11 @@ public partial class MainWindow : Form
 
     private void PairButton_Click(object sender, EventArgs e)
     {
-        new Dialogs.QRCodePair().ShowDialog();
+        new QRCodePair().ShowDialog();
+    }
+
+    private void TCPConnectButton_Click(object sender, EventArgs e)
+    {
+        new TCPConnect().ShowDialog();
     }
 }
