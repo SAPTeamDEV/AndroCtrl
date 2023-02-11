@@ -215,7 +215,9 @@ partial class MainWindow
             this.Controls.Add(this.DeviceGroup);
             this.Name = "MainWindow";
             this.Text = "AndroCtrl";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.MainWindow_Load);
+            this.Enter += new System.EventHandler(this.MainWindow_Enter);
+            this.Leave += new System.EventHandler(this.MainWindow_Leave);
             this.DeviceGroup.ResumeLayout(false);
             this.DeviceGroup.PerformLayout();
             this.ResumeLayout(false);
