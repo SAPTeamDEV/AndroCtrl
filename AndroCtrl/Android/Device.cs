@@ -63,7 +63,7 @@ public class Device
 
     public override string ToString()
     {
-        return string.Format("{0} | {1}", DeviceName, Model);
+        return DeviceID.State == DeviceState.Online ? string.Format("{0} | {1}", DeviceName, Model) : string.Format("{0} | {1} [{2}]", DeviceID.Name, DeviceID.Serial, DeviceID.State);
     }
 
     public void Disconnect()
