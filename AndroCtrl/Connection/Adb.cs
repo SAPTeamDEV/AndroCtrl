@@ -35,7 +35,7 @@ public static class Adb
             if (!Devices.ContainsKey(device))
             {
                 var devObj = Device.CreateNewDevice(device);
-                if (devObj.DeviceID.State == DeviceState.Offline)
+                if (devObj.DeviceID.State == DeviceState.Offline && devObj.IsWifiDevice)
                 {
                     try
                     {
