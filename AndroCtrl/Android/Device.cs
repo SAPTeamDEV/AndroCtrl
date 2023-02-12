@@ -30,6 +30,12 @@ public class Device
     public Device(DeviceData deviceData)
     {
         DeviceID = deviceData;
+
+        DeviceName = string.Empty;
+        Model = string.Empty;
+        Manufacturer = string.Empty;
+        API = string.Empty;
+        Fingerprint = string.Empty;
     }
 
     public static Device CreateNewDevice(DeviceData device)
@@ -52,11 +58,19 @@ public class Device
 
         var props = Adb.Client.GetProperties(device);
 
-        dev.Model = props["ro.product.model"];
-        dev.DeviceName = props["ro.product.device"];
-        dev.Manufacturer = props["ro.product.manufacturer"];
-        dev.API = props["ro.build.version.sdk"];
-        dev.Fingerprint = props["ro.build.fingerprint"];
+        string dName = string.Empty;
+        string model = string.Empty;
+        string manufacturer = string.Empty;
+        string api = string.Empty;
+        string fingerprint = string.Empty;
+
+        props.TryGetValue("ro.product.device", out dName);
+        props.TryGetValue("ro.product.model", out model);
+        props.TryGetValue("ro.product.manufacturer", out manufacturer);
+        props.TryGetValue("ro.build.version.sdk", out api);
+        props.TryGetValue("ro.build.fingerprint", out fingerprint);
+
+        dev.DeviceName = dName;
 
         return dev;
     }
