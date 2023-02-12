@@ -58,11 +58,11 @@ public class Device
 
         var props = Adb.Client.GetProperties(device);
 
-        string dName = string.Empty;
-        string model = string.Empty;
-        string manufacturer = string.Empty;
-        string api = string.Empty;
-        string fingerprint = string.Empty;
+        string dName;
+        string model;
+        string manufacturer;
+        string api;
+        string fingerprint;
 
         props.TryGetValue("ro.product.device", out dName);
         props.TryGetValue("ro.product.model", out model);
@@ -71,6 +71,10 @@ public class Device
         props.TryGetValue("ro.build.fingerprint", out fingerprint);
 
         dev.DeviceName = dName;
+        dev.Model = model;
+        dev.Manufacturer = manufacturer;
+        dev.API = api;
+        dev.Fingerprint = fingerprint;
 
         return dev;
     }
