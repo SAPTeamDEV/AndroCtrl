@@ -35,18 +35,7 @@ public static class Adb
             if (!Devices.ContainsKey(device))
             {
                 var devObj = Device.CreateNewDevice(device);
-                if (devObj.DeviceID.State == DeviceState.Offline && devObj.IsWifiDevice)
-                {
-                    try
-                    {
-                        devObj.Disconnect();
-                    }
-                    catch (Exception) { }
-                }
-                else
-                {
-                    Devices[device] = devObj;
-                }
+                Devices[device] = devObj;
             }
         }
 
@@ -62,7 +51,8 @@ public static class Adb
         if (Devices.Count > 0 && (DefaultDevice == null || !Devices.ContainsValue(DefaultDevice)))
         {
             DefaultDevice = Devices.First().Value;
-        }else if (Devices.Count == 0)
+        }
+        else if (Devices.Count == 0)
         {
             DefaultDevice = null;
         }
