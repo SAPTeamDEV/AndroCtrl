@@ -62,6 +62,9 @@ public static class Adb
         if (Devices.Count > 0 && (DefaultDevice == null || !Devices.ContainsValue(DefaultDevice)))
         {
             DefaultDevice = Devices.First().Value;
+        }else if (Devices.Count == 0)
+        {
+            DefaultDevice = null;
         }
     }
 }
