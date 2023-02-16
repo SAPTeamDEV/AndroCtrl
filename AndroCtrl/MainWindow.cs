@@ -1,5 +1,8 @@
+using System.Net;
+
 using AndroCtrl.Connection;
 using AndroCtrl.Dialogs;
+using AndroCtrl.Protocols.AndroidDebugBridge;
 using AndroCtrl.Services;
 
 namespace AndroCtrl;
@@ -8,6 +11,7 @@ public partial class MainWindow : Form
 {
     bool isUpdating;
     RemoteConnectionService rcs;
+    DeviceMonitor dm;
 
     public MainWindow()
     {
@@ -17,6 +21,12 @@ public partial class MainWindow : Form
     private void MainWindow_Load(object sender, EventArgs e)
     {
         rcs = new();
+
+        dm = new(new AdbSocket(new IPEndPoint(IPAddress.Loopback, AdbClient.AdbServerPort)));
+        dm.DeviceConnected += Refresh;
+        dm.DeviceDisconnected += Refresh;
+        dm.DeviceChanged += Refresh;
+
         Refresh(null, EventArgs.Empty);
     }
 
@@ -88,10 +98,12 @@ public partial class MainWindow : Form
     private void MainWindow_Activated(object sender, EventArgs e)
     {
         rcs.Start(true);
+        dm.Start();
     }
 
     private void MainWindow_Deactivate(object sender, EventArgs e)
     {
         rcs.Stop();
+        dm.Stop();
     }
 }
