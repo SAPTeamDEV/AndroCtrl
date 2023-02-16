@@ -8,8 +8,8 @@ public static class Adb
     public static AdbClient Client { get; }
     public static AdbServer Server { get; }
 
-    public static Dictionary<DeviceData, Device> Devices { get; }
-    public static Device DefaultDevice { get; set; }
+    public static Dictionary<string, AndroidDevice> Devices { get; }
+    public static AndroidDevice DefaultDevice { get; set; }
 
     public static DeviceData DDID => DefaultDevice.DeviceID;
 
@@ -28,21 +28,29 @@ public static class Adb
 
     public static void UpdateDevices()
     {
-        var devices = Client.GetDevices();
+        var newDevices = Client.GetDevices();
 
-        foreach (var device in devices)
+        foreach (var device in newDevices)
         {
-            if (!Devices.ContainsKey(device))
+            string serial = AndroidDevice.TrimSerial(device.Serial);
+
+            if (Devices.ContainsKey(serial))
             {
-                var devObj = Device.CreateNewDevice(device);
-                Devices[device] = devObj;
+                if (Devices[serial].DeviceID.State != device.State)
+                {
+                    Devices[serial].SetDevice(device);
+                }
+            }
+            else
+            {
+                var devObj = AndroidDevice.CreateNewDevice(device);
+                Devices[serial] = devObj;
             }
         }
 
-        var devCopy = new Dictionary<DeviceData, Device>(Devices);
-        foreach (var device in devCopy)
+        foreach (var device in Devices)
         {
-            if (!devices.Contains(device.Key))
+            if (!newDevices.Contains(device.Value.DeviceID))
             {
                 Devices.Remove(device.Key);
             }

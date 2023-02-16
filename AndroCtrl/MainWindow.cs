@@ -60,7 +60,7 @@ public partial class MainWindow : Form
 
     private void DeviceSelector_SelectedIndexChanged(object sender, EventArgs e)
     {
-        Adb.DefaultDevice = (Android.Device)DeviceSelector.SelectedItem;
+        Adb.DefaultDevice = (Android.AndroidDevice)DeviceSelector.SelectedItem;
         RefreshDevicesGroup();
     }
 
