@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -9,6 +10,7 @@ using AndroCtrl.Connection;
 using AndroCtrl.Protocols.AndroidDebugBridge;
 using AndroCtrl.Protocols.AndroidDebugBridge.DeviceCommands;
 using AndroCtrl.Protocols.AndroidDebugBridge.Exceptions;
+using AndroCtrl.Services;
 
 namespace AndroCtrl.Android;
 
@@ -27,6 +29,10 @@ public class AndroidDevice
 
     public bool IsUsbDevice => ConnectionType == ConnectionTypes.Usb;
     public bool IsWifiDevice => ConnectionType == ConnectionTypes.Wifi;
+
+    public bool IsUsable => IsDeviceUsable(Status);
+
+    public bool HasInfo { get; private set; }
 
     public AndroidDevice(DeviceData deviceData)
     {
@@ -48,11 +54,32 @@ public class AndroidDevice
             dev.ConnectionType = ConnectionTypes.Wifi;
         }
 
-        if (device.State == DeviceState.Offline)
+        if (IsDeviceUsable(device.State))
         {
             return dev;
         }
 
+        GatherDeviceInfo(device, dev);
+
+        return dev;
+    }
+
+    public static bool IsDeviceUsable(DeviceState state)
+    {
+        if (state
+            is DeviceState.Offline
+            or DeviceState.NoPermissions
+            or DeviceState.Unauthorized
+            or DeviceState.Authorizing
+            or DeviceState.Unknown)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    public static void GatherDeviceInfo(DeviceData device, AndroidDevice dev)
+    {
         var props = Adb.Client.GetProperties(device);
 
         props.TryGetValue("ro.product.device", out string dName);
@@ -67,7 +94,7 @@ public class AndroidDevice
         dev.API = api;
         dev.Fingerprint = fingerprint;
 
-        return dev;
+        dev.HasInfo = dName != null && model != null;
     }
 
     public static DnsEndPoint SerializeDeviceAddress(string serial)
@@ -92,7 +119,14 @@ public class AndroidDevice
 
     public override string ToString()
     {
-        return DeviceID.State == DeviceState.Online ? string.Format("{0} | {1}", DeviceName, Model) : string.Format("{0} | {1} [{2}]", DeviceID.Name, DeviceID.Serial, DeviceID.State);
+        if (DeviceID.State == DeviceState.Online)
+        {
+            return string.Format("{0} | {1}", DeviceName, Model);
+        }
+        else
+        {
+            return string.Format("{0} | {1} [{2}]", DeviceName ?? DeviceID.Name, Model ?? DeviceID.Serial, DeviceID.State);
+        }
     }
 
     public void Disconnect()
@@ -119,6 +153,11 @@ public class AndroidDevice
         if (SerializeDeviceAddress(device.Serial) is DnsEndPoint endPoint)
         {
             EndPoint = endPoint;
+        }
+
+        if (!HasInfo && IsDeviceUsable(device.State))
+        {
+            GatherDeviceInfo(device, this);
         }
     }
 }
