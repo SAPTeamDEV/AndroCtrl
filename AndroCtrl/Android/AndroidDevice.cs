@@ -54,7 +54,7 @@ public class AndroidDevice
             dev.ConnectionType = ConnectionTypes.Wifi;
         }
 
-        if (IsDeviceUsable(device.State))
+        if (!IsDeviceUsable(device.State))
         {
             return dev;
         }
@@ -94,7 +94,7 @@ public class AndroidDevice
         dev.API = api;
         dev.Fingerprint = fingerprint;
 
-        dev.HasInfo = dName != null && model != null;
+        dev.HasInfo = dName != string.Empty && model != string.Empty;
     }
 
     public static DnsEndPoint SerializeDeviceAddress(string serial)
@@ -125,7 +125,7 @@ public class AndroidDevice
         }
         else
         {
-            return string.Format("{0} | {1} [{2}]", DeviceName ?? DeviceID.Name, Model ?? DeviceID.Serial, DeviceID.State);
+            return string.Format("{0} | {1} [{2}]", HasInfo ? DeviceName : DeviceID.Name, HasInfo ? Model : DeviceID.Serial, DeviceID.State);
         }
     }
 
