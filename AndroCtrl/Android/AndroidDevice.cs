@@ -15,6 +15,7 @@ namespace AndroCtrl.Android;
 public class AndroidDevice
 {
     public DeviceData DeviceID { get; private set; }
+    public DeviceState Status => DeviceID.State;
 
     public string DeviceName { get; private set; }
     public string Model { get; private set; }
@@ -108,10 +109,16 @@ public class AndroidDevice
 
     public void SetDevice(DeviceData device)
     {
-        DeviceID = device;
-        if (SerializeDeviceAddress(device.Serial) is DnsEndPoint ep)
+        if (device.State == DeviceState.Offline && SerializeDeviceAddress(device.Serial) is DnsEndPoint ep && ep.Port != EndPoint.Port)
         {
-            EndPoint = ep;
+            Adb.Client.Disconnect(ep);
+            return;
+        }
+
+        DeviceID = device;
+        if (SerializeDeviceAddress(device.Serial) is DnsEndPoint endPoint)
+        {
+            EndPoint = endPoint;
         }
     }
 }
