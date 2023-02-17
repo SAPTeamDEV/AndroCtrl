@@ -15,6 +15,8 @@ public partial class MainWindow : Form
 
     public MainWindow()
     {
+        Adb.Server.StartServer(Adb.LocalServer, true);
+
         InitializeComponent();
     }
 

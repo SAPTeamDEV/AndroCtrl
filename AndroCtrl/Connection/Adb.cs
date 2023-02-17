@@ -13,15 +13,14 @@ public static class Adb
 
     public static DeviceData DDID => DefaultDevice.DeviceID;
 
-    private static string serverPath = @"bin\adb.exe";
-    private static string localServer = @"C:\Windows\adb\adb.exe";
+    public static string ServerPath = @"bin\adb.exe";
+    internal static string LocalServer = @"C:\Windows\adb\adb.exe";
 
     static Adb()
     {
         Client = new AdbClient();
 
         Server = new AdbServer(Client, Factories.AdbCommandLineClientFactory);
-        Server.StartServer(localServer, true);
 
         Devices = new();
     }
