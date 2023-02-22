@@ -52,7 +52,8 @@
             this.IPAddressIn.Location = new System.Drawing.Point(12, 43);
             this.IPAddressIn.Name = "IPAddressIn";
             this.IPAddressIn.Size = new System.Drawing.Size(252, 23);
-            this.IPAddressIn.TabIndex = 1;
+            this.IPAddressIn.TabIndex = 0;
+            this.IPAddressIn.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IPAddressIn_KeyPress);
             // 
             // label2
             // 
@@ -70,14 +71,16 @@
             this.PortIn.Size = new System.Drawing.Size(90, 23);
             this.PortIn.TabIndex = 1;
             this.PortIn.Text = "5555";
+            this.PortIn.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeyHandler);
             // 
             // DoReconnect
             // 
             this.DoReconnect.AutoSize = true;
+            this.DoReconnect.Enabled = false;
             this.DoReconnect.Location = new System.Drawing.Point(12, 98);
             this.DoReconnect.Name = "DoReconnect";
             this.DoReconnect.Size = new System.Drawing.Size(147, 19);
-            this.DoReconnect.TabIndex = 2;
+            this.DoReconnect.TabIndex = 3;
             this.DoReconnect.Text = "Auto-Reconnect every:";
             this.DoReconnect.UseVisualStyleBackColor = true;
             this.DoReconnect.CheckedChanged += new System.EventHandler(this.DoReconnect_CheckedChanged);
@@ -106,7 +109,7 @@
             this.ConnectButton.Location = new System.Drawing.Point(282, 95);
             this.ConnectButton.Name = "ConnectButton";
             this.ConnectButton.Size = new System.Drawing.Size(90, 23);
-            this.ConnectButton.TabIndex = 3;
+            this.ConnectButton.TabIndex = 2;
             this.ConnectButton.Text = "Connect";
             this.ConnectButton.UseVisualStyleBackColor = true;
             this.ConnectButton.Click += new System.EventHandler(this.ConnectButton_Click);
@@ -126,6 +129,7 @@
             this.Controls.Add(this.label1);
             this.Name = "TCPConnect";
             this.Text = "Connect via TCP/IP";
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeyHandler);
             this.ResumeLayout(false);
             this.PerformLayout();
 
