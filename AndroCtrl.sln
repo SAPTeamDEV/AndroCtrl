@@ -14,7 +14,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AndroCtrl.MusicSync", "Andr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AndroCtrl.Protocols.AndroidDebugBridge", "..\AndroCtrl.Protocols.AndroidDebugBridge\AndroCtrl.Protocols.AndroidDebugBridge\AndroCtrl.Protocols.AndroidDebugBridge.csproj", "{F3A45C84-2277-4A7B-A9D6-69D880533D46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MulticastDNSDiscovery", "MulticastDNSDiscovery\MulticastDNSDiscovery.csproj", "{DB73CE8E-7E0B-435E-9547-633A2835258C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MulticastDNSDiscovery", "MulticastDNSDiscovery\MulticastDNSDiscovery.csproj", "{DB73CE8E-7E0B-435E-9547-633A2835258C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonTK.Console", "..\CommonTK\src\CommonTK.Console\CommonTK.Console.csproj", "{1AE171E3-BEBB-466C-AFB7-2C37F7FEEBC8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonTK", "..\CommonTK\src\CommonTK\CommonTK.csproj", "{66CA10EF-D004-4BFD-84E7-11B71CDBD75B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +42,14 @@ Global
 		{DB73CE8E-7E0B-435E-9547-633A2835258C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB73CE8E-7E0B-435E-9547-633A2835258C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB73CE8E-7E0B-435E-9547-633A2835258C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AE171E3-BEBB-466C-AFB7-2C37F7FEEBC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AE171E3-BEBB-466C-AFB7-2C37F7FEEBC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AE171E3-BEBB-466C-AFB7-2C37F7FEEBC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AE171E3-BEBB-466C-AFB7-2C37F7FEEBC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66CA10EF-D004-4BFD-84E7-11B71CDBD75B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66CA10EF-D004-4BFD-84E7-11B71CDBD75B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66CA10EF-D004-4BFD-84E7-11B71CDBD75B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66CA10EF-D004-4BFD-84E7-11B71CDBD75B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

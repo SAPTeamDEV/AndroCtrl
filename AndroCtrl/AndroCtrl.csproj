@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\AndroCtrl.Protocols.AndroidDebugBridge\AndroCtrl.Protocols.AndroidDebugBridge\AndroCtrl.Protocols.AndroidDebugBridge.csproj" />
+    <ProjectReference Include="..\..\CommonTK\src\CommonTK.Console\CommonTK.Console.csproj" />
   </ItemGroup>
 
 </Project>
