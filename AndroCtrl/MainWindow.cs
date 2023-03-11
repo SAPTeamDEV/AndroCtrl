@@ -103,13 +103,13 @@ public partial class MainWindow : Form
     private void MainWindow_Activated(object sender, EventArgs e)
     {
         rcs.Start(true);
-        dm.Start();
+        // dm.Start();
     }
 
     private void MainWindow_Deactivate(object sender, EventArgs e)
     {
         rcs.Stop();
-        dm.Stop();
+        // dm.Stop();
     }
 
     private void MainWindow_KeyPress(object sender, KeyPressEventArgs e)
@@ -124,10 +124,11 @@ public partial class MainWindow : Form
     {
         ShowConsole();
         var shell = Adb.Client.StartShell(Adb.DDID);
-        Console.Write(shell.GetPrompt());
+        Console.Write(shell.GetPrompt(false));
         while (true)
         {
             shell.Interact(Console.ReadLine(), writer: Console.Out);
+            Console.Write(shell.GetPrompt(false));
         }
     }
 
