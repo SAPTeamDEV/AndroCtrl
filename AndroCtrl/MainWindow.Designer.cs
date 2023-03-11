@@ -230,6 +230,7 @@ partial class MainWindow
         Activated += MainWindow_Activated;
         Deactivate += MainWindow_Deactivate;
         Load += MainWindow_Load;
+        Leave += MainWindow_Leave;
         DeviceGroup.ResumeLayout(false);
         DeviceGroup.PerformLayout();
         ResumeLayout(false);

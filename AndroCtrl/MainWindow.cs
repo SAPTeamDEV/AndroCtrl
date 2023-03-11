@@ -136,4 +136,9 @@ public partial class MainWindow : Form
     {
         Dbg();
     }
+
+    private void MainWindow_Leave(object sender, EventArgs e)
+    {
+        Program.Settings.Write();
+    }
 }
