@@ -62,6 +62,8 @@ namespace AndroCtrl.Dialogs
         {
             KeyHandler(sender, e);
 
+            if (char.IsControl(e.KeyChar)) return;
+
             if (e.KeyChar == '.')
             {
                 e.Handled = false;
@@ -73,7 +75,7 @@ namespace AndroCtrl.Dialogs
                 var divText = rawText.Split('.');
                 List<string> finTexts = new List<string>();
 
-                if (divText.Length > 4 || (divText.Length == 4 && rawText.EndsWith('.')))
+                if (divText.Length > 4)
                 {
                     e.Handled = true;
                     return;
@@ -102,7 +104,7 @@ namespace AndroCtrl.Dialogs
 
                 if (finTexts.Count < 4)
                 {
-                    for (int i = 4 - finTexts.Count; i == 0; i--)
+                    for (int i = 4 - finTexts.Count; i > 0; i--)
                     {
                         finTexts.Add("000");
                     }
