@@ -28,200 +28,211 @@ partial class MainWindow
     /// </summary>
     private void InitializeComponent()
     {
-            this.DeviceGroup = new System.Windows.Forms.GroupBox();
-            this.SDKVersionOut = new System.Windows.Forms.TextBox();
-            this.ManufacturerOut = new System.Windows.Forms.TextBox();
-            this.BuildFingerprintOut = new System.Windows.Forms.TextBox();
-            this.SerialOut = new System.Windows.Forms.TextBox();
-            this.DeviceModelOut = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.RefreshButton = new System.Windows.Forms.Button();
-            this.PairButton = new System.Windows.Forms.Button();
-            this.DisconnectButtun = new System.Windows.Forms.Button();
-            this.TCPConnectButton = new System.Windows.Forms.Button();
-            this.DeviceSelector = new System.Windows.Forms.ComboBox();
-            this.DeviceGroup.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // DeviceGroup
-            // 
-            this.DeviceGroup.Controls.Add(this.SDKVersionOut);
-            this.DeviceGroup.Controls.Add(this.ManufacturerOut);
-            this.DeviceGroup.Controls.Add(this.BuildFingerprintOut);
-            this.DeviceGroup.Controls.Add(this.SerialOut);
-            this.DeviceGroup.Controls.Add(this.DeviceModelOut);
-            this.DeviceGroup.Controls.Add(this.label4);
-            this.DeviceGroup.Controls.Add(this.label2);
-            this.DeviceGroup.Controls.Add(this.label3);
-            this.DeviceGroup.Controls.Add(this.label5);
-            this.DeviceGroup.Controls.Add(this.label1);
-            this.DeviceGroup.Controls.Add(this.RefreshButton);
-            this.DeviceGroup.Controls.Add(this.PairButton);
-            this.DeviceGroup.Controls.Add(this.DisconnectButtun);
-            this.DeviceGroup.Controls.Add(this.TCPConnectButton);
-            this.DeviceGroup.Controls.Add(this.DeviceSelector);
-            this.DeviceGroup.Location = new System.Drawing.Point(12, 12);
-            this.DeviceGroup.Name = "DeviceGroup";
-            this.DeviceGroup.Size = new System.Drawing.Size(230, 278);
-            this.DeviceGroup.TabIndex = 0;
-            this.DeviceGroup.TabStop = false;
-            this.DeviceGroup.Text = "Devices";
-            // 
-            // SDKVersionOut
-            // 
-            this.SDKVersionOut.Location = new System.Drawing.Point(119, 185);
-            this.SDKVersionOut.Name = "SDKVersionOut";
-            this.SDKVersionOut.ReadOnly = true;
-            this.SDKVersionOut.Size = new System.Drawing.Size(105, 23);
-            this.SDKVersionOut.TabIndex = 1;
-            // 
-            // ManufacturerOut
-            // 
-            this.ManufacturerOut.Location = new System.Drawing.Point(119, 132);
-            this.ManufacturerOut.Name = "ManufacturerOut";
-            this.ManufacturerOut.ReadOnly = true;
-            this.ManufacturerOut.Size = new System.Drawing.Size(105, 23);
-            this.ManufacturerOut.TabIndex = 1;
-            // 
-            // BuildFingerprintOut
-            // 
-            this.BuildFingerprintOut.Location = new System.Drawing.Point(6, 239);
-            this.BuildFingerprintOut.Name = "BuildFingerprintOut";
-            this.BuildFingerprintOut.ReadOnly = true;
-            this.BuildFingerprintOut.Size = new System.Drawing.Size(218, 23);
-            this.BuildFingerprintOut.TabIndex = 1;
-            // 
-            // SerialOut
-            // 
-            this.SerialOut.Location = new System.Drawing.Point(6, 185);
-            this.SerialOut.Name = "SerialOut";
-            this.SerialOut.ReadOnly = true;
-            this.SerialOut.Size = new System.Drawing.Size(105, 23);
-            this.SerialOut.TabIndex = 1;
-            // 
-            // DeviceModelOut
-            // 
-            this.DeviceModelOut.Location = new System.Drawing.Point(6, 132);
-            this.DeviceModelOut.Name = "DeviceModelOut";
-            this.DeviceModelOut.ReadOnly = true;
-            this.DeviceModelOut.Size = new System.Drawing.Size(105, 23);
-            this.DeviceModelOut.TabIndex = 1;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(119, 167);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(94, 15);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Android Version:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(119, 114);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(82, 15);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Manufacturer:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 114);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(82, 15);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Device Model:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 220);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(98, 15);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "Build Fingerprint:";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 167);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 15);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Serial Number:";
-            // 
-            // RefreshButton
-            // 
-            this.RefreshButton.Location = new System.Drawing.Point(119, 86);
-            this.RefreshButton.Name = "RefreshButton";
-            this.RefreshButton.Size = new System.Drawing.Size(105, 24);
-            this.RefreshButton.TabIndex = 1;
-            this.RefreshButton.Text = "&Refresh Devices";
-            this.RefreshButton.UseVisualStyleBackColor = true;
-            this.RefreshButton.Click += new System.EventHandler(this.Refresh);
-            // 
-            // PairButton
-            // 
-            this.PairButton.Location = new System.Drawing.Point(119, 56);
-            this.PairButton.Name = "PairButton";
-            this.PairButton.Size = new System.Drawing.Size(105, 24);
-            this.PairButton.TabIndex = 1;
-            this.PairButton.Text = "&Pair New Device";
-            this.PairButton.UseVisualStyleBackColor = true;
-            this.PairButton.Click += new System.EventHandler(this.PairButton_Click);
-            // 
-            // DisconnectButtun
-            // 
-            this.DisconnectButtun.Enabled = false;
-            this.DisconnectButtun.Location = new System.Drawing.Point(6, 86);
-            this.DisconnectButtun.Name = "DisconnectButtun";
-            this.DisconnectButtun.Size = new System.Drawing.Size(105, 24);
-            this.DisconnectButtun.TabIndex = 1;
-            this.DisconnectButtun.Text = "Disconnect";
-            this.DisconnectButtun.UseVisualStyleBackColor = true;
-            this.DisconnectButtun.Click += new System.EventHandler(this.DisconnectButtun_Click);
-            // 
-            // TCPConnectButton
-            // 
-            this.TCPConnectButton.Location = new System.Drawing.Point(6, 56);
-            this.TCPConnectButton.Name = "TCPConnectButton";
-            this.TCPConnectButton.Size = new System.Drawing.Size(105, 24);
-            this.TCPConnectButton.TabIndex = 1;
-            this.TCPConnectButton.Text = "TCP/IP &Connect";
-            this.TCPConnectButton.UseVisualStyleBackColor = true;
-            this.TCPConnectButton.Click += new System.EventHandler(this.TCPConnectButton_Click);
-            // 
-            // DeviceSelector
-            // 
-            this.DeviceSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.DeviceSelector.FormattingEnabled = true;
-            this.DeviceSelector.Location = new System.Drawing.Point(6, 22);
-            this.DeviceSelector.Name = "DeviceSelector";
-            this.DeviceSelector.Size = new System.Drawing.Size(218, 23);
-            this.DeviceSelector.TabIndex = 2;
-            this.DeviceSelector.SelectedIndexChanged += new System.EventHandler(this.DeviceSelector_SelectedIndexChanged);
-            // 
-            // MainWindow
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.DeviceGroup);
-            this.Name = "MainWindow";
-            this.Text = "AndroCtrl";
-            this.Activated += new System.EventHandler(this.MainWindow_Activated);
-            this.Deactivate += new System.EventHandler(this.MainWindow_Deactivate);
-            this.Load += new System.EventHandler(this.MainWindow_Load);
-            this.DeviceGroup.ResumeLayout(false);
-            this.DeviceGroup.PerformLayout();
-            this.ResumeLayout(false);
-
+        DeviceGroup = new GroupBox();
+        SDKVersionOut = new TextBox();
+        ManufacturerOut = new TextBox();
+        BuildFingerprintOut = new TextBox();
+        SerialOut = new TextBox();
+        DeviceModelOut = new TextBox();
+        label4 = new Label();
+        label2 = new Label();
+        label3 = new Label();
+        label5 = new Label();
+        label1 = new Label();
+        RefreshButton = new Button();
+        PairButton = new Button();
+        DisconnectButtun = new Button();
+        TCPConnectButton = new Button();
+        DeviceSelector = new ComboBox();
+        DbgBtn = new Button();
+        DeviceGroup.SuspendLayout();
+        SuspendLayout();
+        // 
+        // DeviceGroup
+        // 
+        DeviceGroup.Controls.Add(SDKVersionOut);
+        DeviceGroup.Controls.Add(ManufacturerOut);
+        DeviceGroup.Controls.Add(BuildFingerprintOut);
+        DeviceGroup.Controls.Add(SerialOut);
+        DeviceGroup.Controls.Add(DeviceModelOut);
+        DeviceGroup.Controls.Add(label4);
+        DeviceGroup.Controls.Add(label2);
+        DeviceGroup.Controls.Add(label3);
+        DeviceGroup.Controls.Add(label5);
+        DeviceGroup.Controls.Add(label1);
+        DeviceGroup.Controls.Add(RefreshButton);
+        DeviceGroup.Controls.Add(PairButton);
+        DeviceGroup.Controls.Add(DisconnectButtun);
+        DeviceGroup.Controls.Add(TCPConnectButton);
+        DeviceGroup.Controls.Add(DeviceSelector);
+        DeviceGroup.Location = new Point(12, 12);
+        DeviceGroup.Name = "DeviceGroup";
+        DeviceGroup.Size = new Size(230, 278);
+        DeviceGroup.TabIndex = 0;
+        DeviceGroup.TabStop = false;
+        DeviceGroup.Text = "Devices";
+        // 
+        // SDKVersionOut
+        // 
+        SDKVersionOut.Location = new Point(119, 185);
+        SDKVersionOut.Name = "SDKVersionOut";
+        SDKVersionOut.ReadOnly = true;
+        SDKVersionOut.Size = new Size(105, 23);
+        SDKVersionOut.TabIndex = 1;
+        // 
+        // ManufacturerOut
+        // 
+        ManufacturerOut.Location = new Point(119, 132);
+        ManufacturerOut.Name = "ManufacturerOut";
+        ManufacturerOut.ReadOnly = true;
+        ManufacturerOut.Size = new Size(105, 23);
+        ManufacturerOut.TabIndex = 1;
+        // 
+        // BuildFingerprintOut
+        // 
+        BuildFingerprintOut.Location = new Point(6, 239);
+        BuildFingerprintOut.Name = "BuildFingerprintOut";
+        BuildFingerprintOut.ReadOnly = true;
+        BuildFingerprintOut.Size = new Size(218, 23);
+        BuildFingerprintOut.TabIndex = 1;
+        // 
+        // SerialOut
+        // 
+        SerialOut.Location = new Point(6, 185);
+        SerialOut.Name = "SerialOut";
+        SerialOut.ReadOnly = true;
+        SerialOut.Size = new Size(105, 23);
+        SerialOut.TabIndex = 1;
+        // 
+        // DeviceModelOut
+        // 
+        DeviceModelOut.Location = new Point(6, 132);
+        DeviceModelOut.Name = "DeviceModelOut";
+        DeviceModelOut.ReadOnly = true;
+        DeviceModelOut.Size = new Size(105, 23);
+        DeviceModelOut.TabIndex = 1;
+        // 
+        // label4
+        // 
+        label4.AutoSize = true;
+        label4.Location = new Point(119, 167);
+        label4.Name = "label4";
+        label4.Size = new Size(94, 15);
+        label4.TabIndex = 1;
+        label4.Text = "Android Version:";
+        // 
+        // label2
+        // 
+        label2.AutoSize = true;
+        label2.Location = new Point(119, 114);
+        label2.Name = "label2";
+        label2.Size = new Size(82, 15);
+        label2.TabIndex = 1;
+        label2.Text = "Manufacturer:";
+        // 
+        // label3
+        // 
+        label3.AutoSize = true;
+        label3.Location = new Point(6, 114);
+        label3.Name = "label3";
+        label3.Size = new Size(82, 15);
+        label3.TabIndex = 1;
+        label3.Text = "Device Model:";
+        // 
+        // label5
+        // 
+        label5.AutoSize = true;
+        label5.Location = new Point(6, 220);
+        label5.Name = "label5";
+        label5.Size = new Size(98, 15);
+        label5.TabIndex = 1;
+        label5.Text = "Build Fingerprint:";
+        // 
+        // label1
+        // 
+        label1.AutoSize = true;
+        label1.Location = new Point(6, 167);
+        label1.Name = "label1";
+        label1.Size = new Size(85, 15);
+        label1.TabIndex = 1;
+        label1.Text = "Serial Number:";
+        // 
+        // RefreshButton
+        // 
+        RefreshButton.Location = new Point(119, 86);
+        RefreshButton.Name = "RefreshButton";
+        RefreshButton.Size = new Size(105, 24);
+        RefreshButton.TabIndex = 1;
+        RefreshButton.Text = "&Refresh Devices";
+        RefreshButton.UseVisualStyleBackColor = true;
+        RefreshButton.Click += Refresh;
+        // 
+        // PairButton
+        // 
+        PairButton.Location = new Point(119, 56);
+        PairButton.Name = "PairButton";
+        PairButton.Size = new Size(105, 24);
+        PairButton.TabIndex = 1;
+        PairButton.Text = "&Pair New Device";
+        PairButton.UseVisualStyleBackColor = true;
+        PairButton.Click += PairButton_Click;
+        // 
+        // DisconnectButtun
+        // 
+        DisconnectButtun.Enabled = false;
+        DisconnectButtun.Location = new Point(6, 86);
+        DisconnectButtun.Name = "DisconnectButtun";
+        DisconnectButtun.Size = new Size(105, 24);
+        DisconnectButtun.TabIndex = 1;
+        DisconnectButtun.Text = "Disconnect";
+        DisconnectButtun.UseVisualStyleBackColor = true;
+        DisconnectButtun.Click += DisconnectButtun_Click;
+        // 
+        // TCPConnectButton
+        // 
+        TCPConnectButton.Location = new Point(6, 56);
+        TCPConnectButton.Name = "TCPConnectButton";
+        TCPConnectButton.Size = new Size(105, 24);
+        TCPConnectButton.TabIndex = 1;
+        TCPConnectButton.Text = "TCP/IP &Connect";
+        TCPConnectButton.UseVisualStyleBackColor = true;
+        TCPConnectButton.Click += TCPConnectButton_Click;
+        // 
+        // DeviceSelector
+        // 
+        DeviceSelector.DropDownStyle = ComboBoxStyle.DropDownList;
+        DeviceSelector.FormattingEnabled = true;
+        DeviceSelector.Location = new Point(6, 22);
+        DeviceSelector.Name = "DeviceSelector";
+        DeviceSelector.Size = new Size(218, 23);
+        DeviceSelector.TabIndex = 2;
+        DeviceSelector.SelectedIndexChanged += DeviceSelector_SelectedIndexChanged;
+        // 
+        // DbgBtn
+        // 
+        DbgBtn.Location = new Point(18, 303);
+        DbgBtn.Name = "DbgBtn";
+        DbgBtn.Size = new Size(218, 36);
+        DbgBtn.TabIndex = 1;
+        DbgBtn.Text = "Debug";
+        DbgBtn.UseVisualStyleBackColor = true;
+        DbgBtn.Click += DbgBtn_Click;
+        // 
+        // MainWindow
+        // 
+        AutoScaleDimensions = new SizeF(7F, 15F);
+        AutoScaleMode = AutoScaleMode.Font;
+        ClientSize = new Size(800, 450);
+        Controls.Add(DbgBtn);
+        Controls.Add(DeviceGroup);
+        Name = "MainWindow";
+        Text = "AndroCtrl";
+        Activated += MainWindow_Activated;
+        Deactivate += MainWindow_Deactivate;
+        Load += MainWindow_Load;
+        DeviceGroup.ResumeLayout(false);
+        DeviceGroup.PerformLayout();
+        ResumeLayout(false);
     }
 
     #endregion
@@ -241,4 +252,5 @@ partial class MainWindow
     private Label label5;
     private Button RefreshButton;
     private Button DisconnectButtun;
+    private Button DbgBtn;
 }

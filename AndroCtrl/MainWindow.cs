@@ -5,6 +5,9 @@ using AndroCtrl.Dialogs;
 using AndroCtrl.Protocols.AndroidDebugBridge;
 using AndroCtrl.Services;
 
+using static SAPTeam.CommonTK.Console.ConsoleManager;
+using SAPTeam.CommonTK;
+
 namespace AndroCtrl;
 
 public partial class MainWindow : Form
@@ -107,5 +110,29 @@ public partial class MainWindow : Form
     {
         rcs.Stop();
         dm.Stop();
+    }
+
+    private void MainWindow_KeyPress(object sender, KeyPressEventArgs e)
+    {
+        if (e.KeyChar == (char)Keys.F5)
+        {
+
+        }
+    }
+
+    void Dbg()
+    {
+        ShowConsole();
+        var shell = Adb.Client.StartShell(Adb.DDID);
+        Console.Write(shell.GetPrompt());
+        while (true)
+        {
+            shell.Interact(Console.ReadLine(), writer: Console.Out);
+        }
+    }
+
+    private void DbgBtn_Click(object sender, EventArgs e)
+    {
+        Dbg();
     }
 }
