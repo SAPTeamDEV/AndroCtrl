@@ -1,4 +1,4 @@
-using System.IO;
+using SAPTeam.CommonTK;
 
 namespace AndroCtrl;
 
@@ -19,7 +19,7 @@ internal static class Program
     /// </summary>
     public static string ConfigPath => Path.Join(ProcessDirectory, "app.json");
 
-    static internal Config Settings { get; set; }
+    static internal Config<AppliationSettings> Settings { get; set; }
 
     /// <summary>
     ///  The main entry point for the application.
