@@ -28,10 +28,14 @@ public partial class MainWindow : Form
     {
         rcs = new();
 
+#if !DEBUG
         dm = new(new AdbSocket(new IPEndPoint(IPAddress.Loopback, AdbClient.AdbServerPort)));
         dm.DeviceConnected += Refresh;
         dm.DeviceDisconnected += Refresh;
         dm.DeviceChanged += Refresh;
+#else
+        Text += " [Debug]";
+#endif
 
         Refresh(null, EventArgs.Empty);
     }
