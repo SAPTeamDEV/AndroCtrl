@@ -125,12 +125,15 @@ public partial class MainWindow : Form
     {
         using ConsoleWindow console = new();
         var shell = Adb.Client.StartShell(Adb.DDID);
-        Console.Write(shell.GetPrompt(false));
-        while (true)
+        new Thread(() =>
         {
-            shell.Interact(Console.ReadLine(), writer: Console.Out);
             Console.Write(shell.GetPrompt(false));
-        }
+            while (true)
+            {
+                shell.Interact(Console.ReadLine(), writer: Console.Out);
+                Console.Write(shell.GetPrompt(false));
+            }
+        }).Start();
     }
 
     private void DbgBtn_Click(object sender, EventArgs e)
