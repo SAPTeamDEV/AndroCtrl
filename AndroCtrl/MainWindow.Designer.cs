@@ -166,6 +166,7 @@ partial class MainWindow
         RefreshButton.Text = "&Refresh Devices";
         RefreshButton.UseVisualStyleBackColor = true;
         RefreshButton.Click += Refresh;
+        RefreshButton.MouseClick += RefreshButton_MouseClick;
         // 
         // PairButton
         // 

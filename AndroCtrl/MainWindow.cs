@@ -8,6 +8,7 @@ using AndroCtrl.Services;
 using static SAPTeam.CommonTK.Console.ConsoleManager;
 using SAPTeam.CommonTK;
 using SAPTeam.CommonTK.Contexts;
+using Timer = SAPTeam.CommonTK.Timer;
 
 namespace AndroCtrl;
 
@@ -16,6 +17,7 @@ public partial class MainWindow : Form
     bool isUpdating;
     RemoteConnectionService rcs;
     DeviceMonitor dm;
+    Timer timer;
 
     public MainWindow()
     {
@@ -152,5 +154,24 @@ public partial class MainWindow : Form
     private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
     {
         Program.Config.Write();
+    }
+
+    private void RefreshButton_MouseClick(object sender, MouseEventArgs e)
+    {
+#if DEBUG
+        if (e.Button == MouseButtons.Right)
+        {
+            if (timer == null || !timer.IsRunning)
+            {
+                timer = Timer.Set(3000, Refresh, true);
+                RefreshButton.Text = "Every 3s";
+            }
+            else
+            {
+                timer.Stop();
+                RefreshButton.Text = "&Refresh Devices";
+            }
+        }
+#endif
     }
 }
