@@ -104,13 +104,17 @@ public partial class MainWindow : Form
     private void MainWindow_Activated(object sender, EventArgs e)
     {
         rcs.Start(true);
-        // dm.Start();
+#if !DEBUG
+        dm.Start();
+#endif
     }
 
     private void MainWindow_Deactivate(object sender, EventArgs e)
     {
         rcs.Stop();
-        // dm.Stop();
+#if !DEBUG
+        dm.Stop();
+#endif
     }
 
     private void MainWindow_KeyPress(object sender, KeyPressEventArgs e)
