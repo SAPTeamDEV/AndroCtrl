@@ -143,6 +143,6 @@ public partial class MainWindow : Form
 
     private void MainWindow_Leave(object sender, EventArgs e)
     {
-        Program.Settings.Write();
+        Program.Config.Write();
     }
 }
