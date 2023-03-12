@@ -141,7 +141,7 @@ public partial class MainWindow : Form
         Dbg();
     }
 
-    private void MainWindow_Leave(object sender, EventArgs e)
+    private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
     {
         Program.Config.Write();
     }

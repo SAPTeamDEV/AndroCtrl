@@ -229,8 +229,8 @@ partial class MainWindow
         Text = "AndroCtrl";
         Activated += MainWindow_Activated;
         Deactivate += MainWindow_Deactivate;
+        FormClosed += MainWindow_FormClosed;
         Load += MainWindow_Load;
-        Leave += MainWindow_Leave;
         DeviceGroup.ResumeLayout(false);
         DeviceGroup.PerformLayout();
         ResumeLayout(false);
