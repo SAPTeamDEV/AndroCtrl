@@ -17,7 +17,7 @@ internal static class Program
     /// <summary>
     /// Gets Path of Application Config file.
     /// </summary>
-    public static string ConfigPath => Path.Join(ProcessDirectory, "app.json");
+    public static string ConfigPath => Path.Join(ProcessDirectory, "config.json");
 
     static internal Config<AppliationSettings> Settings { get; set; }
 
