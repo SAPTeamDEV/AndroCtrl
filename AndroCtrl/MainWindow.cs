@@ -7,6 +7,7 @@ using AndroCtrl.Services;
 
 using static SAPTeam.CommonTK.Console.ConsoleManager;
 using SAPTeam.CommonTK;
+using SAPTeam.CommonTK.Contexts;
 
 namespace AndroCtrl;
 
@@ -122,7 +123,7 @@ public partial class MainWindow : Form
 
     void Dbg()
     {
-        ShowConsole();
+        using ConsoleWindow console = new();
         var shell = Adb.Client.StartShell(Adb.DDID);
         Console.Write(shell.GetPrompt(false));
         while (true)
