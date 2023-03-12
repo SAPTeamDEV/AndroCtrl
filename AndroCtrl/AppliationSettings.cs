@@ -8,5 +8,5 @@ namespace AndroCtrl;
 
 internal class AppliationSettings
 {
-    public List<string> IPAddresses { get; set; }
+    public List<string> IPAddresses { get; set; } = new();
 }
