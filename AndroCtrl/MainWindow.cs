@@ -123,10 +123,10 @@ public partial class MainWindow : Form
 
     void Dbg()
     {
-        using ConsoleWindow console = new();
-        var shell = Adb.Client.StartShell(Adb.DDID);
         new Thread(() =>
         {
+            using ConsoleWindow console = new();
+            var shell = Adb.Client.StartShell(Adb.DDID);
             Console.Write(shell.GetPrompt(false));
             while (true)
             {
