@@ -24,6 +24,19 @@ namespace AndroCtrl.Dialogs
             InitializeComponent();
         }
 
+        private void TCPConnect_Load(object sender, EventArgs e)
+        {
+            if (Program.Settings.IPAddresses.Count > 0)
+            {
+                foreach (var ip in Program.Settings.IPAddresses)
+                {
+                    IPAddressIn.Items.Add(ip);
+                }
+
+                IPAddressIn.SelectedIndex = 0;
+            }
+        }
+
         private void DoReconnect_CheckedChanged(object sender, EventArgs e)
         {
             DelayIn.Enabled = DoReconnect.Checked;
@@ -33,6 +46,11 @@ namespace AndroCtrl.Dialogs
         {
             DnsEndPoint ep = new(IPAddressIn.Text, int.Parse(PortIn.Text));
             Adb.Client.Connect(ep);
+
+            if (!Program.Settings.IPAddresses.Contains(ep.Host))
+            {
+                Program.Settings.IPAddresses.Add(ep.Host);
+            }
 
             if (DoReconnect.Checked)
             {
@@ -115,6 +133,11 @@ namespace AndroCtrl.Dialogs
                     e.Handled = true;
                 }
             }
+        }
+
+        private void TCPConnect_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Program.Config.Write();
         }
     }
 }
