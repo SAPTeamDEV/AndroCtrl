@@ -24,6 +24,10 @@ public partial class AndroidDevice
     public string Manufacturer { get; private set; }
     public string API { get; private set; }
     public string Fingerprint { get; private set; }
+
+    public ShellSocket Shell { get; private set; }
+    public bool IsRoot => Shell.Access == ShellAccess.Root;
+
     public DnsEndPoint EndPoint { get; private set; }
     public ConnectionTypes ConnectionType { get; private set; }
 
@@ -33,6 +37,7 @@ public partial class AndroidDevice
     public bool IsUsable => IsDeviceUsable(Status);
 
     public bool HasInfo { get; private set; }
+    public bool HasShell => Shell != null;
 
     public AndroidDevice(DeviceData deviceData)
     {
@@ -83,9 +88,17 @@ public partial class AndroidDevice
             EndPoint = endPoint;
         }
 
-        if (!HasInfo && IsDeviceUsable(device.State))
+        if (IsDeviceUsable(device.State))
         {
-            GatherDeviceInfo(device, this);
+            if (!HasInfo)
+            {
+                GatherDeviceInfo(device, this);
+            }
+
+            if (!HasShell)
+            {
+                Shell = Adb.Client.StartShell(device);
+            }
         }
     }
 }
