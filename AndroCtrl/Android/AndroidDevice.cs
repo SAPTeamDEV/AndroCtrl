@@ -37,7 +37,7 @@ public partial class AndroidDevice
     public bool IsUsable => IsDeviceUsable(Status);
 
     public bool HasInfo { get; private set; }
-    public bool HasShell => Shell != null;
+    public bool HasShell => Shell != null && Shell.Connected;
 
     public AndroidDevice(DeviceData deviceData)
     {
