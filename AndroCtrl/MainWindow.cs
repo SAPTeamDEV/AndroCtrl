@@ -123,11 +123,13 @@ public partial class MainWindow : Form
 #endif
     }
 
-    private void MainWindow_KeyPress(object sender, KeyPressEventArgs e)
+    private void MainWindow_KeyPress(object sender, KeyEventArgs e)
     {
-        if (e.KeyChar == (char)Keys.F5)
+        if (e.KeyCode == Keys.F5)
         {
-
+#if DEBUG
+            Dbg();
+#endif
         }
     }
 

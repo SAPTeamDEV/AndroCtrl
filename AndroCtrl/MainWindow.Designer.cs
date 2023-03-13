@@ -44,7 +44,6 @@ partial class MainWindow
         DisconnectButtun = new Button();
         TCPConnectButton = new Button();
         DeviceSelector = new ComboBox();
-        DbgBtn = new Button();
         DeviceGroup.SuspendLayout();
         SuspendLayout();
         // 
@@ -166,7 +165,7 @@ partial class MainWindow
         RefreshButton.Text = "&Refresh Devices";
         RefreshButton.UseVisualStyleBackColor = true;
         RefreshButton.Click += Refresh;
-        RefreshButton.MouseClick += RefreshButton_MouseClick;
+        RefreshButton.MouseUp += RefreshButton_MouseClick;
         // 
         // PairButton
         // 
@@ -209,29 +208,20 @@ partial class MainWindow
         DeviceSelector.TabIndex = 2;
         DeviceSelector.SelectedIndexChanged += DeviceSelector_SelectedIndexChanged;
         // 
-        // DbgBtn
-        // 
-        DbgBtn.Location = new Point(18, 303);
-        DbgBtn.Name = "DbgBtn";
-        DbgBtn.Size = new Size(218, 36);
-        DbgBtn.TabIndex = 1;
-        DbgBtn.Text = "Debug";
-        DbgBtn.UseVisualStyleBackColor = true;
-        DbgBtn.Click += DbgBtn_Click;
-        // 
         // MainWindow
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(800, 450);
-        Controls.Add(DbgBtn);
         Controls.Add(DeviceGroup);
+        KeyPreview = true;
         Name = "MainWindow";
         Text = "AndroCtrl";
         Activated += MainWindow_Activated;
         Deactivate += MainWindow_Deactivate;
         FormClosed += MainWindow_FormClosed;
         Load += MainWindow_Load;
+        KeyUp += MainWindow_KeyPress;
         DeviceGroup.ResumeLayout(false);
         DeviceGroup.PerformLayout();
         ResumeLayout(false);
@@ -254,5 +244,4 @@ partial class MainWindow
     private Label label5;
     private Button RefreshButton;
     private Button DisconnectButtun;
-    private Button DbgBtn;
 }
