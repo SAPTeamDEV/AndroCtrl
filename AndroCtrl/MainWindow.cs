@@ -125,32 +125,12 @@ public partial class MainWindow : Form
 
     private void MainWindow_KeyPress(object sender, KeyEventArgs e)
     {
+#if DEBUG
         if (e.KeyCode == Keys.F5)
         {
-#if DEBUG
-            Dbg();
-#endif
+
         }
-    }
-
-    void Dbg()
-    {
-        new Thread(() =>
-        {
-            using ConsoleWindow console = new();
-            var shell = Adb.Client.StartShell(Adb.DDID);
-            Console.Write(shell.GetPrompt(false));
-            while (true)
-            {
-                shell.Interact(Console.ReadLine(), writer: Console.Out);
-                Console.Write(shell.GetPrompt(false));
-            }
-        }).Start();
-    }
-
-    private void DbgBtn_Click(object sender, EventArgs e)
-    {
-        Dbg();
+#endif
     }
 
     private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
@@ -175,5 +155,20 @@ public partial class MainWindow : Form
             }
         }
 #endif
+    }
+
+    private void RunShellButton_Click(object sender, EventArgs e)
+    {
+        new Thread(() =>
+        {
+            using ConsoleWindow console = new();
+            var shell = Adb.Client.StartShell(Adb.DDID);
+            Console.Write(shell.GetPrompt(false));
+            while (true)
+            {
+                shell.Interact(Console.ReadLine(), writer: Console.Out);
+                Console.Write(shell.GetPrompt(false));
+            }
+        }).Start();
     }
 }

@@ -44,7 +44,10 @@ partial class MainWindow
         DisconnectButtun = new Button();
         TCPConnectButton = new Button();
         DeviceSelector = new ComboBox();
+        UtilsGroup = new GroupBox();
+        RunShellButton = new Button();
         DeviceGroup.SuspendLayout();
+        UtilsGroup.SuspendLayout();
         SuspendLayout();
         // 
         // DeviceGroup
@@ -208,11 +211,32 @@ partial class MainWindow
         DeviceSelector.TabIndex = 2;
         DeviceSelector.SelectedIndexChanged += DeviceSelector_SelectedIndexChanged;
         // 
+        // UtilsGroup
+        // 
+        UtilsGroup.Controls.Add(RunShellButton);
+        UtilsGroup.Location = new Point(248, 12);
+        UtilsGroup.Name = "UtilsGroup";
+        UtilsGroup.Size = new Size(540, 426);
+        UtilsGroup.TabIndex = 1;
+        UtilsGroup.TabStop = false;
+        UtilsGroup.Text = "Utilities";
+        // 
+        // RunShellButton
+        // 
+        RunShellButton.Location = new Point(6, 22);
+        RunShellButton.Name = "RunShellButton";
+        RunShellButton.Size = new Size(102, 23);
+        RunShellButton.TabIndex = 0;
+        RunShellButton.Text = "Shell Terminal";
+        RunShellButton.UseVisualStyleBackColor = true;
+        RunShellButton.Click += RunShellButton_Click;
+        // 
         // MainWindow
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(800, 450);
+        Controls.Add(UtilsGroup);
         Controls.Add(DeviceGroup);
         KeyPreview = true;
         Name = "MainWindow";
@@ -224,6 +248,7 @@ partial class MainWindow
         KeyUp += MainWindow_KeyPress;
         DeviceGroup.ResumeLayout(false);
         DeviceGroup.PerformLayout();
+        UtilsGroup.ResumeLayout(false);
         ResumeLayout(false);
     }
 
@@ -244,4 +269,6 @@ partial class MainWindow
     private Label label5;
     private Button RefreshButton;
     private Button DisconnectButtun;
+    private GroupBox UtilsGroup;
+    private Button RunShellButton;
 }
