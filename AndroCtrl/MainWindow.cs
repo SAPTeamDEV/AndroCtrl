@@ -57,6 +57,7 @@ public partial class MainWindow : Form
             DeviceSelector.SelectedItem = Adb.DefaultDevice;
 
             DisconnectButtun.Enabled = Adb.DefaultDevice.ConnectionType == ConnectionTypes.Wifi;
+            RootButton.Enabled = !Adb.DefaultDevice.IsRoot;
             label1.Text = Adb.DefaultDevice.IsUsbDevice ? "Serial Number:" : "IP Address:";
             DeviceModelOut.Text = Adb.DefaultDevice.Model;
             ManufacturerOut.Text = Adb.DefaultDevice.Manufacturer;
@@ -72,6 +73,8 @@ public partial class MainWindow : Form
             DeviceSelector.Items.Clear();
 
             DisconnectButtun.Enabled = false;
+            RootButton.Enabled = false;
+
             label1.Text = "Serial Number:";
             DeviceModelOut.Text = "";
             ManufacturerOut.Text = "";
@@ -147,25 +150,6 @@ public partial class MainWindow : Form
         Program.Config.Write();
     }
 
-    private void RefreshButton_MouseClick(object sender, MouseEventArgs e)
-    {
-#if DEBUG
-        if (e.Button == MouseButtons.Right)
-        {
-            if (timer == null || !timer.IsRunning)
-            {
-                timer = Timer.Set(3000, Refresh, true);
-                RefreshButton.Text = "Every 3s";
-            }
-            else
-            {
-                timer.Stop();
-                RefreshButton.Text = "&Refresh Devices";
-            }
-        }
-#endif
-    }
-
     private void RunShellButton_Click(object sender, EventArgs e)
     {
         new Thread(() =>
@@ -189,5 +173,14 @@ public partial class MainWindow : Form
                 }
             }
         }).Start();
+    }
+
+    private void RootButton_Click(object sender, EventArgs e)
+    {
+        Adb.DefaultDevice.Shell.Interact("su");
+        if (Adb.DefaultDevice.IsRoot)
+        {
+            Refresh();
+        }
     }
 }

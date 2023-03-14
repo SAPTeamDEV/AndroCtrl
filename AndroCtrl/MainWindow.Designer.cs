@@ -39,13 +39,13 @@ partial class MainWindow
         label3 = new Label();
         label5 = new Label();
         label1 = new Label();
-        RefreshButton = new Button();
         PairButton = new Button();
         DisconnectButtun = new Button();
         TCPConnectButton = new Button();
         DeviceSelector = new ComboBox();
         UtilsGroup = new GroupBox();
         RunShellButton = new Button();
+        RootButton = new Button();
         DeviceGroup.SuspendLayout();
         UtilsGroup.SuspendLayout();
         SuspendLayout();
@@ -62,9 +62,9 @@ partial class MainWindow
         DeviceGroup.Controls.Add(label3);
         DeviceGroup.Controls.Add(label5);
         DeviceGroup.Controls.Add(label1);
-        DeviceGroup.Controls.Add(RefreshButton);
         DeviceGroup.Controls.Add(PairButton);
         DeviceGroup.Controls.Add(DisconnectButtun);
+        DeviceGroup.Controls.Add(RootButton);
         DeviceGroup.Controls.Add(TCPConnectButton);
         DeviceGroup.Controls.Add(DeviceSelector);
         DeviceGroup.Location = new Point(12, 12);
@@ -159,17 +159,6 @@ partial class MainWindow
         label1.TabIndex = 1;
         label1.Text = "Serial Number:";
         // 
-        // RefreshButton
-        // 
-        RefreshButton.Location = new Point(119, 86);
-        RefreshButton.Name = "RefreshButton";
-        RefreshButton.Size = new Size(105, 24);
-        RefreshButton.TabIndex = 1;
-        RefreshButton.Text = "&Refresh Devices";
-        RefreshButton.UseVisualStyleBackColor = true;
-        RefreshButton.Click += Refresh;
-        RefreshButton.MouseUp += RefreshButton_MouseClick;
-        // 
         // PairButton
         // 
         PairButton.Location = new Point(119, 56);
@@ -183,7 +172,7 @@ partial class MainWindow
         // DisconnectButtun
         // 
         DisconnectButtun.Enabled = false;
-        DisconnectButtun.Location = new Point(6, 86);
+        DisconnectButtun.Location = new Point(119, 86);
         DisconnectButtun.Name = "DisconnectButtun";
         DisconnectButtun.Size = new Size(105, 24);
         DisconnectButtun.TabIndex = 1;
@@ -231,6 +220,16 @@ partial class MainWindow
         RunShellButton.UseVisualStyleBackColor = true;
         RunShellButton.Click += RunShellButton_Click;
         // 
+        // RootButton
+        // 
+        RootButton.Location = new Point(8, 86);
+        RootButton.Name = "RootButton";
+        RootButton.Size = new Size(105, 24);
+        RootButton.TabIndex = 1;
+        RootButton.Text = "&Root Access";
+        RootButton.UseVisualStyleBackColor = true;
+        RootButton.Click += RootButton_Click;
+        // 
         // MainWindow
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
@@ -267,8 +266,8 @@ partial class MainWindow
     private Label label3;
     private TextBox BuildFingerprintOut;
     private Label label5;
-    private Button RefreshButton;
     private Button DisconnectButtun;
     private GroupBox UtilsGroup;
     private Button RunShellButton;
+    private Button RootButton;
 }
