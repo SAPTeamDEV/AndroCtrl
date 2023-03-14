@@ -141,7 +141,7 @@ public partial class MainWindow : Form
 #endif
         if (e.KeyCode == Keys.F5)
         {
-            Refresh();
+            Refresh(sender, EventArgs.Empty);
         }
     }
 
@@ -180,7 +180,7 @@ public partial class MainWindow : Form
         Adb.DefaultDevice.Shell.Interact("su");
         if (Adb.DefaultDevice.IsRoot)
         {
-            Refresh();
+            Refresh(sender, EventArgs.Empty);
         }
     }
 }
