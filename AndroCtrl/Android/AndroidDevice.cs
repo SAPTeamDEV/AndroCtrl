@@ -16,6 +16,8 @@ namespace AndroCtrl.Android;
 
 public partial class AndroidDevice
 {
+    ShellSocket shell;
+
     public DeviceData DeviceID { get; private set; }
     public DeviceState Status => DeviceID.State;
 
@@ -25,7 +27,21 @@ public partial class AndroidDevice
     public string API { get; private set; }
     public string Fingerprint { get; private set; }
 
-    public ShellSocket Shell { get; private set; }
+    public ShellSocket Shell
+    {
+        get
+        {
+            if (!HasShell)
+            {
+                shell = Adb.Client.StartShell(DeviceID);
+                return shell;
+            }
+            else
+            {
+                return shell;
+            }
+        }
+    }
     public bool IsRoot => Shell.Access == ShellAccess.Root;
 
     public DnsEndPoint EndPoint { get; private set; }
@@ -37,7 +53,7 @@ public partial class AndroidDevice
     public bool IsUsable => IsDeviceUsable(Status);
 
     public bool HasInfo { get; private set; }
-    public bool HasShell => Shell != null && Shell.Connected;
+    public bool HasShell => shell != null && shell.Connected;
 
     public AndroidDevice(DeviceData deviceData)
     {
@@ -93,11 +109,6 @@ public partial class AndroidDevice
             if (!HasInfo)
             {
                 GatherDeviceInfo(device, this);
-            }
-
-            if (!HasShell)
-            {
-                Shell = Adb.Client.StartShell(device);
             }
         }
     }

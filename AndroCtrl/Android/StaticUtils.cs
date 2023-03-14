@@ -29,8 +29,6 @@ namespace AndroCtrl.Android
 
             GatherDeviceInfo(device, dev);
 
-            dev.Shell = Adb.Client.StartShell(device);
-
             return dev;
         }
 
