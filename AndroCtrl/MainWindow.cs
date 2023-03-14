@@ -63,6 +63,8 @@ public partial class MainWindow : Form
             SerialOut.Text = Adb.DefaultDevice.DeviceID.Serial;
             SDKVersionOut.Text = Adb.DefaultDevice.API;
             BuildFingerprintOut.Text = Adb.DefaultDevice.Fingerprint;
+
+            UtilsGroup.Enabled = true;
         }
         else if (!isUpdating && Adb.DefaultDevice == null)
         {
@@ -76,6 +78,8 @@ public partial class MainWindow : Form
             SerialOut.Text = "";
             SDKVersionOut.Text = "";
             BuildFingerprintOut.Text = "";
+
+            UtilsGroup.Enabled = false;
         }
 
         isUpdating = false;
