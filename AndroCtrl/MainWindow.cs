@@ -131,11 +131,15 @@ public partial class MainWindow : Form
     private void MainWindow_KeyPress(object sender, KeyEventArgs e)
     {
 #if DEBUG
-        if (e.KeyCode == Keys.F5)
+        if (e.KeyCode == Keys.F2)
         {
-
+            // Debug button
         }
 #endif
+        if (e.KeyCode == Keys.F5)
+        {
+            Refresh();
+        }
     }
 
     private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
