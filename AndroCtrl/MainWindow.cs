@@ -9,6 +9,7 @@ using static SAPTeam.CommonTK.Console.ConsoleManager;
 using SAPTeam.CommonTK;
 using SAPTeam.CommonTK.Contexts;
 using Timer = SAPTeam.CommonTK.Timer;
+using System.Net.Sockets;
 
 namespace AndroCtrl;
 
@@ -164,10 +165,20 @@ public partial class MainWindow : Form
             using ConsoleWindow console = new();
             var shell = Adb.Client.StartShell(Adb.DDID);
             Console.Write(shell.GetPrompt(false));
-            while (true)
+            try
             {
-                shell.Interact(Console.ReadLine(), writer: Console.Out);
-                Console.Write(shell.GetPrompt(false));
+                while (true)
+                {
+                    shell.Interact(Console.ReadLine(), writer: Console.Out);
+                    Console.Write(shell.GetPrompt(false));
+                }
+            }
+            catch (SocketException e)
+            {
+                if (e.ErrorCode != (int)SocketError.NotConnected)
+                {
+                    throw;
+                }
             }
         }).Start();
     }
