@@ -68,14 +68,18 @@ public partial class AndroidDevice
 
     public override string ToString()
     {
-        if (DeviceID.State == DeviceState.Online)
+        string text = string.Format("{0} | {1}", HasInfo ? DeviceName : DeviceID.Name, HasInfo ? Model : DeviceID.Serial);
+
+        if (DeviceID.State != DeviceState.Online)
         {
-            return string.Format("{0} | {1}", DeviceName, Model);
+            text += $" [{DeviceID.State}]";
         }
-        else
+        else if (IsRoot)
         {
-            return string.Format("{0} | {1} [{2}]", HasInfo ? DeviceName : DeviceID.Name, HasInfo ? Model : DeviceID.Serial, DeviceID.State);
+            text += $" [ROOT]";
         }
+
+        return text;
     }
 
     public void Disconnect()
