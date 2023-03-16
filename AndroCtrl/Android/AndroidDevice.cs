@@ -94,6 +94,19 @@ public partial class AndroidDevice
         }
     }
 
+    public bool SuperUser()
+    {
+        if (!IsRoot)
+        {
+            Run("su");
+            return IsRoot;
+        }
+        else
+        {
+            throw new InvalidOperationException("Device's shell already has root access.");
+        }
+    }
+
     public void Disconnect()
     {
         if (IsWifiDevice)
