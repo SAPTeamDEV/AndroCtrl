@@ -82,6 +82,18 @@ public partial class AndroidDevice
         return text;
     }
 
+    public string Run(string command)
+    {
+        if (IsUsable)
+        {
+            return shell.Interact(command);
+        }
+        else
+        {
+            throw new AdbException("Device is not responsible.");
+        }
+    }
+
     public void Disconnect()
     {
         if (IsWifiDevice)
