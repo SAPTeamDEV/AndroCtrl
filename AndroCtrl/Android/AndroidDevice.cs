@@ -86,6 +86,10 @@ public partial class AndroidDevice
     {
         if (IsWifiDevice)
         {
+            if (HasShell)
+            {
+                shell.Dispose();
+            }
             Adb.Client.Disconnect(EndPoint);
         }
         else
@@ -96,13 +100,20 @@ public partial class AndroidDevice
 
     public void SetDevice(DeviceData device)
     {
+        // Dispose outdated shell.
+        if (HasShell)
+        {
+            Shell.Dispose();
+        }
+
         if (device.State == DeviceState.Offline && SerializeDeviceAddress(device.Serial) is DnsEndPoint ep && ep.Port != EndPoint.Port)
         {
-            Adb.Client.Disconnect(ep);
+            Disconnect();
             return;
         }
 
         DeviceID = device;
+
         if (SerializeDeviceAddress(device.Serial) is DnsEndPoint endPoint)
         {
             EndPoint = endPoint;
