@@ -31,7 +31,7 @@ public partial class AndroidDevice
     {
         get
         {
-            if (!HasShell)
+            if (!HasShell && IsUsable)
             {
                 shell = Adb.Client.StartShell(DeviceID);
                 return shell;
