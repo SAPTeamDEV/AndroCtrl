@@ -28,7 +28,7 @@ public partial class AndroidDevice
     public string API { get; private set; }
     public string Fingerprint { get; private set; }
 
-    public ShellSocket Shell
+    private ShellSocket Shell
     {
         get
         {

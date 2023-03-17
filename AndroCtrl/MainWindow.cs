@@ -177,7 +177,7 @@ public partial class MainWindow : Form
 
     private void RootButton_Click(object sender, EventArgs e)
     {
-        Adb.DefaultDevice.Shell.Interact("su");
+        Adb.DefaultDevice.SuperUser();
         if (Adb.DefaultDevice.IsRoot)
         {
             Refresh(sender, EventArgs.Empty);
