@@ -65,7 +65,7 @@ public partial class MainWindow : Form
             DeviceSelector.SelectedItem = Device;
 
             DisconnectButtun.Enabled = Device.ConnectionType == ConnectionTypes.Wifi;
-            RootButton.Enabled = !Device.IsRoot;
+            RootButton.Enabled = Device.IsUsable && !Device.IsRoot;
             label1.Text = Device.IsUsbDevice ? "Serial Number:" : "IP Address:";
             DeviceModelOut.Text = Device.Model;
             ManufacturerOut.Text = Device.Manufacturer;
@@ -73,7 +73,7 @@ public partial class MainWindow : Form
             SDKVersionOut.Text = Device.API;
             BuildFingerprintOut.Text = Device.Fingerprint;
 
-            UtilsGroup.Enabled = true;
+            UtilsGroup.Enabled = Device.IsUsable;
         }
         else if (!isUpdating && Device == null)
         {
