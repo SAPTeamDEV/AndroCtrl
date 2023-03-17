@@ -17,7 +17,7 @@ namespace AndroCtrl.Android;
 
 public partial class AndroidDevice
 {
-    ShellSocket shell;
+    ShellSocket _shell;
 
     public DeviceData DeviceID { get; private set; }
     public DeviceState Status => DeviceID.State;
@@ -34,12 +34,12 @@ public partial class AndroidDevice
         {
             if (!HasShell && IsUsable)
             {
-                shell = Adb.Client.StartShell(DeviceID);
-                return shell;
+                _shell = Adb.Client.StartShell(DeviceID);
+                return _shell;
             }
             else
             {
-                return shell;
+                return _shell;
             }
         }
     }
@@ -54,7 +54,7 @@ public partial class AndroidDevice
     public bool IsUsable => IsDeviceUsable(Status);
 
     public bool HasInfo { get; private set; }
-    public bool HasShell => shell != null && shell.Connected;
+    public bool HasShell => _shell != null && _shell.Connected;
 
     public AndroidDevice(DeviceData deviceData)
     {
@@ -88,7 +88,7 @@ public partial class AndroidDevice
         if (IsUsable)
         {
             IShellOutputReceiver checker = new ConsoleOutputReceiver();
-            return shell.Interact(command, receiver != null ? new IShellOutputReceiver[] { checker, receiver} : new IShellOutputReceiver[] { checker});
+            return Shell.Interact(command, receiver != null ? new IShellOutputReceiver[] { checker, receiver} : new IShellOutputReceiver[] { checker});
         }
         else
         {
@@ -115,7 +115,7 @@ public partial class AndroidDevice
         {
             if (HasShell)
             {
-                shell.Dispose();
+                Shell.Dispose();
             }
             Adb.Client.Disconnect(EndPoint);
         }
