@@ -43,7 +43,7 @@ public partial class AndroidDevice
             }
         }
     }
-    public bool IsRoot => Shell.Access == ShellAccess.Root;
+    public bool IsRoot => HasShell && Shell.Access == ShellAccess.Root;
 
     public DnsEndPoint EndPoint { get; private set; }
     public ConnectionTypes ConnectionType { get; private set; }
