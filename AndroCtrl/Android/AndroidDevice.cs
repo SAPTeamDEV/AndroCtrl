@@ -10,6 +10,7 @@ using AndroCtrl.Connection;
 using AndroCtrl.Protocols.AndroidDebugBridge;
 using AndroCtrl.Protocols.AndroidDebugBridge.DeviceCommands;
 using AndroCtrl.Protocols.AndroidDebugBridge.Exceptions;
+using AndroCtrl.Protocols.AndroidDebugBridge.Receivers;
 using AndroCtrl.Services;
 
 namespace AndroCtrl.Android;
@@ -82,11 +83,12 @@ public partial class AndroidDevice
         return text;
     }
 
-    public string Run(string command)
+    public string Run(string command, IShellOutputReceiver receiver = null)
     {
         if (IsUsable)
         {
-            return shell.Interact(command);
+            IShellOutputReceiver checker = new ConsoleOutputReceiver();
+            return shell.Interact(command, receiver != null ? new IShellOutputReceiver[] { checker, receiver} : new IShellOutputReceiver[] { checker});
         }
         else
         {
