@@ -10,6 +10,7 @@ using SAPTeam.CommonTK;
 using SAPTeam.CommonTK.Contexts;
 using Timer = SAPTeam.CommonTK.Timer;
 using System.Net.Sockets;
+using AndroCtrl.Android;
 
 namespace AndroCtrl;
 
@@ -19,6 +20,8 @@ public partial class MainWindow : Form
     RemoteConnectionService rcs;
     DeviceMonitor dm;
     Timer timer;
+
+    AndroidDevice Device => Adb.DefaultDevice;
 
     public MainWindow()
     {
@@ -45,7 +48,7 @@ public partial class MainWindow : Form
 
     public void RefreshDevicesGroup()
     {
-        if (!isUpdating && Adb.DefaultDevice != null)
+        if (!isUpdating && Device != null)
         {
             isUpdating = true;
             DeviceSelector.Items.Clear();
@@ -54,20 +57,20 @@ public partial class MainWindow : Form
             {
                 DeviceSelector.Items.Add(device.Value);
             }
-            DeviceSelector.SelectedItem = Adb.DefaultDevice;
+            DeviceSelector.SelectedItem = Device;
 
-            DisconnectButtun.Enabled = Adb.DefaultDevice.ConnectionType == ConnectionTypes.Wifi;
-            RootButton.Enabled = !Adb.DefaultDevice.IsRoot;
-            label1.Text = Adb.DefaultDevice.IsUsbDevice ? "Serial Number:" : "IP Address:";
-            DeviceModelOut.Text = Adb.DefaultDevice.Model;
-            ManufacturerOut.Text = Adb.DefaultDevice.Manufacturer;
-            SerialOut.Text = Adb.DefaultDevice.DeviceID.Serial;
-            SDKVersionOut.Text = Adb.DefaultDevice.API;
-            BuildFingerprintOut.Text = Adb.DefaultDevice.Fingerprint;
+            DisconnectButtun.Enabled = Device.ConnectionType == ConnectionTypes.Wifi;
+            RootButton.Enabled = !Device.IsRoot;
+            label1.Text = Device.IsUsbDevice ? "Serial Number:" : "IP Address:";
+            DeviceModelOut.Text = Device.Model;
+            ManufacturerOut.Text = Device.Manufacturer;
+            SerialOut.Text = Device.DeviceID.Serial;
+            SDKVersionOut.Text = Device.API;
+            BuildFingerprintOut.Text = Device.Fingerprint;
 
             UtilsGroup.Enabled = true;
         }
-        else if (!isUpdating && Adb.DefaultDevice == null)
+        else if (!isUpdating && Device == null)
         {
             isUpdating = true;
             DeviceSelector.Items.Clear();
@@ -90,7 +93,7 @@ public partial class MainWindow : Form
 
     private void DeviceSelector_SelectedIndexChanged(object sender, EventArgs e)
     {
-        Adb.DefaultDevice = (Android.AndroidDevice)DeviceSelector.SelectedItem;
+        Device = (Android.AndroidDevice)DeviceSelector.SelectedItem;
         RefreshDevicesGroup();
     }
 
@@ -112,7 +115,7 @@ public partial class MainWindow : Form
 
     private void DisconnectButtun_Click(object sender, EventArgs e)
     {
-        Adb.DefaultDevice.Disconnect();
+        Device.Disconnect();
     }
 
     private void MainWindow_Activated(object sender, EventArgs e)
@@ -177,8 +180,8 @@ public partial class MainWindow : Form
 
     private void RootButton_Click(object sender, EventArgs e)
     {
-        Adb.DefaultDevice.SuperUser();
-        if (Adb.DefaultDevice.IsRoot)
+        Device.SuperUser();
+        if (Device.IsRoot)
         {
             Refresh(sender, EventArgs.Empty);
         }
