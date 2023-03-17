@@ -41,9 +41,14 @@ public partial class MainWindow : Form
         dm.DeviceChanged += Refresh;
 #else
         Text += " [Debug]";
+        rcs.TaskExecuted += (obj, s) =>
+        {
+            Thread.Sleep(200);
+            Refresh(sender, e);
+        };
 #endif
 
-        Refresh(null, EventArgs.Empty);
+        Refresh(sender, e);
     }
 
     public void RefreshDevicesGroup()
@@ -107,7 +112,7 @@ public partial class MainWindow : Form
         new TCPConnect().ShowDialog();
     }
 
-    private void Refresh(object? sender, EventArgs e)
+    public void Refresh(object? sender, EventArgs e)
     {
         Adb.UpdateDevices();
         RefreshDevicesGroup();
@@ -116,6 +121,9 @@ public partial class MainWindow : Form
     private void DisconnectButtun_Click(object sender, EventArgs e)
     {
         Device.Disconnect();
+#if DEBUG
+        Refresh(sender, e);
+#endif
     }
 
     private void MainWindow_Activated(object sender, EventArgs e)
@@ -123,6 +131,9 @@ public partial class MainWindow : Form
         rcs.Start(true);
 #if !DEBUG
         dm.Start();
+#else
+        Thread.Sleep(200);
+        Refresh(sender, e);
 #endif
     }
 
