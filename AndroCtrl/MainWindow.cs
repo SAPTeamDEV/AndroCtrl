@@ -218,16 +218,20 @@ public partial class MainWindow : Form
 
     private void RestartServerButton_Click(object sender, EventArgs e)
     {
-
+        Adb.Client.KillAdb();
+        Adb.Server.RestartServer();
+        Refresh(sender, e);
     }
 
     private void StartServerButton_Click(object sender, EventArgs e)
     {
-
+        Adb.Server.RestartServer();
+        Refresh(sender, e);
     }
 
     private void KillServerButton_Click(object sender, EventArgs e)
     {
-
+        Adb.Client.KillAdb();
+        Refresh(sender, e);
     }
 }
