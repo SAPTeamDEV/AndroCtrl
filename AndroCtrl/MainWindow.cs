@@ -56,8 +56,15 @@ public partial class MainWindow : Form
 
     public void Refresh(object? sender, EventArgs e)
     {
-        RefreshServerStatus();
-        Adb.UpdateDevices();
+        if (RefreshServerStatus())
+        {
+            Adb.UpdateDevices();
+        }
+        else
+        {
+            Adb.Devices.Clear();
+            Adb.DefaultDevice = null;
+        }
         RefreshDevicesGroup();
     }
 
@@ -106,18 +113,28 @@ public partial class MainWindow : Form
         isUpdating = false;
     }
 
-    public void RefreshServerStatus()
+    public bool RefreshServerStatus()
     {
-        AdbServerStatus status = Adb.Server.GetStatus();
+        AdbServerStatus status = Adb.Server.GetStatus(false);
 
         if (status.IsRunning)
         {
             ServerStatus.Text = $"Adb Server v{status.Version} is running";
+
+            RestartServerButton.Enabled = true;
+            StartServerButton.Enabled = false;
+            KillServerButton.Enabled = true;
         }
         else
         {
             ServerStatus.Text = "Adb Server is Offline";
+
+            RestartServerButton.Enabled = false;
+            StartServerButton.Enabled = true;
+            KillServerButton.Enabled = false;
         }
+
+        return status.IsRunning;
     }
 
     private void DeviceSelector_SelectedIndexChanged(object sender, EventArgs e)
@@ -219,6 +236,7 @@ public partial class MainWindow : Form
     private void RestartServerButton_Click(object sender, EventArgs e)
     {
         Adb.Client.KillAdb();
+        Thread.Sleep(100);
         Adb.Server.RestartServer();
         Refresh(sender, e);
     }
