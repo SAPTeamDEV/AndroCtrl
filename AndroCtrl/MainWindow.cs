@@ -11,6 +11,8 @@ using SAPTeam.CommonTK.Contexts;
 using Timer = SAPTeam.CommonTK.Timer;
 using System.Net.Sockets;
 using AndroCtrl.Android;
+using System.Reflection;
+using System.Diagnostics;
 
 namespace AndroCtrl;
 
@@ -48,6 +50,7 @@ public partial class MainWindow : Form
         };
 #endif
 
+        Text += $" v{FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion}";
         Refresh(sender, e);
     }
 
