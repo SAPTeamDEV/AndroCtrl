@@ -200,4 +200,19 @@ public partial class MainWindow : Form
             Refresh(sender, EventArgs.Empty);
         }
     }
+
+    private void RestartServerButton_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void StartServerButton_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void KillServerButton_Click(object sender, EventArgs e)
+    {
+
+    }
 }

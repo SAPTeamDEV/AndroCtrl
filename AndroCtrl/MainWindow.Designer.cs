@@ -41,13 +41,19 @@ partial class MainWindow
         label1 = new Label();
         PairButton = new Button();
         DisconnectButtun = new Button();
+        RootButton = new Button();
         TCPConnectButton = new Button();
         DeviceSelector = new ComboBox();
         UtilsGroup = new GroupBox();
         RunShellButton = new Button();
-        RootButton = new Button();
+        AdbServerGroup = new GroupBox();
+        StartServerButton = new Button();
+        KillServerButton = new Button();
+        RestartServerButton = new Button();
+        ServerStatus = new Label();
         DeviceGroup.SuspendLayout();
         UtilsGroup.SuspendLayout();
+        AdbServerGroup.SuspendLayout();
         SuspendLayout();
         // 
         // DeviceGroup
@@ -180,6 +186,16 @@ partial class MainWindow
         DisconnectButtun.UseVisualStyleBackColor = true;
         DisconnectButtun.Click += DisconnectButtun_Click;
         // 
+        // RootButton
+        // 
+        RootButton.Location = new Point(8, 86);
+        RootButton.Name = "RootButton";
+        RootButton.Size = new Size(105, 24);
+        RootButton.TabIndex = 1;
+        RootButton.Text = "&Root Access";
+        RootButton.UseVisualStyleBackColor = true;
+        RootButton.Click += RootButton_Click;
+        // 
         // TCPConnectButton
         // 
         TCPConnectButton.Location = new Point(6, 56);
@@ -220,21 +236,66 @@ partial class MainWindow
         RunShellButton.UseVisualStyleBackColor = true;
         RunShellButton.Click += RunShellButton_Click;
         // 
-        // RootButton
+        // AdbServerGroup
         // 
-        RootButton.Location = new Point(8, 86);
-        RootButton.Name = "RootButton";
-        RootButton.Size = new Size(105, 24);
-        RootButton.TabIndex = 1;
-        RootButton.Text = "&Root Access";
-        RootButton.UseVisualStyleBackColor = true;
-        RootButton.Click += RootButton_Click;
+        AdbServerGroup.Controls.Add(ServerStatus);
+        AdbServerGroup.Controls.Add(KillServerButton);
+        AdbServerGroup.Controls.Add(RestartServerButton);
+        AdbServerGroup.Controls.Add(StartServerButton);
+        AdbServerGroup.Location = new Point(12, 296);
+        AdbServerGroup.Name = "AdbServerGroup";
+        AdbServerGroup.Size = new Size(230, 142);
+        AdbServerGroup.TabIndex = 2;
+        AdbServerGroup.TabStop = false;
+        AdbServerGroup.Text = "Adb Server";
+        // 
+        // StartServerButton
+        // 
+        StartServerButton.Location = new Point(6, 101);
+        StartServerButton.Name = "StartServerButton";
+        StartServerButton.Size = new Size(105, 24);
+        StartServerButton.TabIndex = 1;
+        StartServerButton.Text = "&Start Server";
+        StartServerButton.UseVisualStyleBackColor = true;
+        StartServerButton.Click += StartServerButton_Click;
+        // 
+        // KillServerButton
+        // 
+        KillServerButton.Location = new Point(117, 101);
+        KillServerButton.Name = "KillServerButton";
+        KillServerButton.Size = new Size(105, 24);
+        KillServerButton.TabIndex = 1;
+        KillServerButton.Text = "&Kill Server";
+        KillServerButton.UseVisualStyleBackColor = true;
+        KillServerButton.Click += KillServerButton_Click;
+        // 
+        // RestartServerButton
+        // 
+        RestartServerButton.Location = new Point(6, 71);
+        RestartServerButton.Name = "RestartServerButton";
+        RestartServerButton.Size = new Size(216, 24);
+        RestartServerButton.TabIndex = 1;
+        RestartServerButton.Text = "Restart Server";
+        RestartServerButton.UseVisualStyleBackColor = true;
+        RestartServerButton.Click += RestartServerButton_Click;
+        // 
+        // ServerStatus
+        // 
+        ServerStatus.AutoSize = true;
+        ServerStatus.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+        ServerStatus.Location = new Point(68, 32);
+        ServerStatus.Name = "ServerStatus";
+        ServerStatus.Size = new Size(94, 20);
+        ServerStatus.TabIndex = 2;
+        ServerStatus.Text = "Server Status";
+        ServerStatus.TextAlign = ContentAlignment.MiddleLeft;
         // 
         // MainWindow
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(800, 450);
+        Controls.Add(AdbServerGroup);
         Controls.Add(UtilsGroup);
         Controls.Add(DeviceGroup);
         KeyPreview = true;
@@ -248,6 +309,8 @@ partial class MainWindow
         DeviceGroup.ResumeLayout(false);
         DeviceGroup.PerformLayout();
         UtilsGroup.ResumeLayout(false);
+        AdbServerGroup.ResumeLayout(false);
+        AdbServerGroup.PerformLayout();
         ResumeLayout(false);
     }
 
@@ -270,4 +333,9 @@ partial class MainWindow
     private GroupBox UtilsGroup;
     private Button RunShellButton;
     private Button RootButton;
+    private GroupBox AdbServerGroup;
+    private Label ServerStatus;
+    private Button KillServerButton;
+    private Button RestartServerButton;
+    private Button StartServerButton;
 }
