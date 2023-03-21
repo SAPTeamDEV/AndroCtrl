@@ -236,6 +236,7 @@ public partial class MainWindow : Form
     private void RestartServerButton_Click(object sender, EventArgs e)
     {
         Adb.Client.KillAdb();
+        Refresh(sender, e);
         Thread.Sleep(100);
         Adb.Server.RestartServer();
         Refresh(sender, e);
