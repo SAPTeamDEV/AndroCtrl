@@ -54,6 +54,13 @@ public partial class MainWindow : Form
         Refresh(sender, e);
     }
 
+    public void Refresh(object? sender, EventArgs e)
+    {
+        RefreshServerStatus();
+        Adb.UpdateDevices();
+        RefreshDevicesGroup();
+    }
+
     public void RefreshDevicesGroup()
     {
         if (!isUpdating && Device != null)
@@ -99,6 +106,20 @@ public partial class MainWindow : Form
         isUpdating = false;
     }
 
+    public void RefreshServerStatus()
+    {
+        AdbServerStatus status = Adb.Server.GetStatus();
+
+        if (status.IsRunning)
+        {
+            ServerStatus.Text = $"Adb Server v{status.Version} is running";
+        }
+        else
+        {
+            ServerStatus.Text = "Adb Server is Offline";
+        }
+    }
+
     private void DeviceSelector_SelectedIndexChanged(object sender, EventArgs e)
     {
         Adb.DefaultDevice = (AndroidDevice)DeviceSelector.SelectedItem;
@@ -113,12 +134,6 @@ public partial class MainWindow : Form
     private void TCPConnectButton_Click(object sender, EventArgs e)
     {
         new TCPConnect().ShowDialog();
-    }
-
-    public void Refresh(object? sender, EventArgs e)
-    {
-        Adb.UpdateDevices();
-        RefreshDevicesGroup();
     }
 
     private void DisconnectButtun_Click(object sender, EventArgs e)

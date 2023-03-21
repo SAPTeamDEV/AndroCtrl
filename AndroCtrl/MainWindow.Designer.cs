@@ -47,10 +47,10 @@ partial class MainWindow
         UtilsGroup = new GroupBox();
         RunShellButton = new Button();
         AdbServerGroup = new GroupBox();
-        StartServerButton = new Button();
+        ServerStatus = new Label();
         KillServerButton = new Button();
         RestartServerButton = new Button();
-        ServerStatus = new Label();
+        StartServerButton = new Button();
         DeviceGroup.SuspendLayout();
         UtilsGroup.SuspendLayout();
         AdbServerGroup.SuspendLayout();
@@ -249,15 +249,16 @@ partial class MainWindow
         AdbServerGroup.TabStop = false;
         AdbServerGroup.Text = "Adb Server";
         // 
-        // StartServerButton
+        // ServerStatus
         // 
-        StartServerButton.Location = new Point(6, 101);
-        StartServerButton.Name = "StartServerButton";
-        StartServerButton.Size = new Size(105, 24);
-        StartServerButton.TabIndex = 1;
-        StartServerButton.Text = "&Start Server";
-        StartServerButton.UseVisualStyleBackColor = true;
-        StartServerButton.Click += StartServerButton_Click;
+        ServerStatus.AutoSize = true;
+        ServerStatus.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+        ServerStatus.Location = new Point(6, 30);
+        ServerStatus.Name = "ServerStatus";
+        ServerStatus.Size = new Size(94, 20);
+        ServerStatus.TabIndex = 2;
+        ServerStatus.Text = "Server Status";
+        ServerStatus.TextAlign = ContentAlignment.MiddleLeft;
         // 
         // KillServerButton
         // 
@@ -279,16 +280,15 @@ partial class MainWindow
         RestartServerButton.UseVisualStyleBackColor = true;
         RestartServerButton.Click += RestartServerButton_Click;
         // 
-        // ServerStatus
+        // StartServerButton
         // 
-        ServerStatus.AutoSize = true;
-        ServerStatus.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-        ServerStatus.Location = new Point(68, 32);
-        ServerStatus.Name = "ServerStatus";
-        ServerStatus.Size = new Size(94, 20);
-        ServerStatus.TabIndex = 2;
-        ServerStatus.Text = "Server Status";
-        ServerStatus.TextAlign = ContentAlignment.MiddleLeft;
+        StartServerButton.Location = new Point(6, 101);
+        StartServerButton.Name = "StartServerButton";
+        StartServerButton.Size = new Size(105, 24);
+        StartServerButton.TabIndex = 1;
+        StartServerButton.Text = "&Start Server";
+        StartServerButton.UseVisualStyleBackColor = true;
+        StartServerButton.Click += StartServerButton_Click;
         // 
         // MainWindow
         // 
