@@ -19,8 +19,27 @@ internal static class Program
     /// </summary>
     public static string ConfigPath => Path.Join(ProcessDirectory, "config.json");
 
-    static internal Config<AppliationSettings> Config { get; set; }
-    static internal AppliationSettings Settings { get; set; }
+    /// <summary>
+    /// Gets Application's settings writer.
+    /// </summary>
+    static internal Config<AppliationSettings> Config { get; private set; }
+
+    /// <summary>
+    /// Gets Application settings.
+    /// </summary>
+    static internal AppliationSettings Settings { get; private set; }
+
+    /// <summary>
+    /// Gets all supposed search path for finding requirements.
+    /// </summary>
+    public static List<string> SearchPaths { get; } = new()
+    {
+        "",
+        "bin",
+        @"C:\Windows",
+        @"C:\Windows\system32",
+        @"C:\Windows\adb"
+    };
 
     /// <summary>
     ///  The main entry point for the application.
