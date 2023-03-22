@@ -26,4 +26,11 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build -c Debug --no-restore
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: AndroCtrl-Debug
+        path: |
+          src/AndroCtrl/bin/Debug/net6.0-windows
+          !src/AndroCtrl/bin/Debug/net6.0-windows/*.pdb
