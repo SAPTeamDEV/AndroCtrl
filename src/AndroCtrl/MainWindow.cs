@@ -38,9 +38,13 @@ public partial class MainWindow : Form
         {
             // using an already runned server.
         }
-        else
+        else if (Adb.AdbPath != null)
         {
             Adb.Server.StartServer(Adb.AdbPath, true);
+        }
+        else
+        {
+            throw new InvalidOperationException("Adb server is not running in this machine and adb executable is not found.");
         }
 
         rcs = new();
@@ -131,7 +135,7 @@ public partial class MainWindow : Form
         {
             ServerStatus.Text = $"Adb Server v{status.Version} is running";
 
-            RestartServerButton.Enabled = true;
+            RestartServerButton.Enabled = Adb.Server.HasAdbPath;
             StartServerButton.Enabled = false;
             KillServerButton.Enabled = true;
         }
@@ -140,7 +144,7 @@ public partial class MainWindow : Form
             ServerStatus.Text = "Adb Server is Offline";
 
             RestartServerButton.Enabled = false;
-            StartServerButton.Enabled = true;
+            StartServerButton.Enabled = Adb.Server.HasAdbPath;
             KillServerButton.Enabled = false;
         }
 
