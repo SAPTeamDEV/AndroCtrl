@@ -1,4 +1,7 @@
-﻿using AndroCtrl.Android;
+﻿using System.ComponentModel;
+using System.Diagnostics;
+
+using AndroCtrl.Android;
 using AndroCtrl.Protocols.AndroidDebugBridge;
 
 namespace AndroCtrl.Connection;
@@ -35,6 +38,11 @@ public static class Adb
                     break;
                 }
             }
+        }
+
+        if (AdbPath == null)
+        {
+            AdbPath = GetAdbPathFromProccess();
         }
     }
 
@@ -82,5 +90,22 @@ public static class Adb
     {
         LastServerStatus = Server.GetStatus(false);
         return LastServerStatus;
+    }
+
+    public static string GetAdbPathFromProccess()
+    {
+        foreach (Process adbProcess in Process.GetProcessesByName("adb"))
+        {
+            try
+            {
+                return adbProcess.MainModule.FileName;
+            }
+            catch (Exception)
+            {
+                
+            }
+        }
+
+        return null;
     }
 }

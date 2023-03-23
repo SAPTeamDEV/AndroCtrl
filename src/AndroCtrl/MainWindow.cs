@@ -37,6 +37,10 @@ public partial class MainWindow : Form
         if (status.IsRunning && status.Version >= AdbServer.RequiredAdbVersion)
         {
             // using an already runned server.
+            if (Adb.AdbPath != null)
+            {
+                Adb.Server.UpdateAdbPath(Adb.AdbPath);
+            }
         }
         else if (Adb.AdbPath != null)
         {
