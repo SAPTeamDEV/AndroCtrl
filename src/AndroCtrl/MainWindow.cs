@@ -107,6 +107,7 @@ public partial class MainWindow : Form
             SDKVersionOut.Text = "";
             BuildFingerprintOut.Text = "";
 
+            DeviceGroup.Enabled = Adb.Server.GetStatus(false).IsRunning;
             UtilsGroup.Enabled = false;
         }
 
