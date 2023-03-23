@@ -27,13 +27,13 @@ public partial class MainWindow : Form
 
     public MainWindow()
     {
-        Adb.Server.StartServer(Adb.AdbPath, true);
-
         InitializeComponent();
     }
 
     private void MainWindow_Load(object sender, EventArgs e)
     {
+        Adb.Server.StartServer(Adb.AdbPath, true);
+
         rcs = new();
 
 #if !DEBUG
