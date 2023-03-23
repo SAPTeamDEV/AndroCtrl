@@ -7,6 +7,7 @@ public static class Adb
 {
     public static AdbClient Client { get; }
     public static AdbServer Server { get; }
+    public static AdbServerStatus LastServerStatus { get; private set; }
 
     public static Dictionary<string, AndroidDevice> Devices { get; }
     public static AndroidDevice DefaultDevice { get; set; }
@@ -75,5 +76,11 @@ public static class Adb
         {
             DefaultDevice = null;
         }
+    }
+
+    public static AdbServerStatus UpdateServerStatus()
+    {
+        LastServerStatus = Server.GetStatus(false);
+        return LastServerStatus;
     }
 }

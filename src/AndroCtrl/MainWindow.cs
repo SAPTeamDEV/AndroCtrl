@@ -32,7 +32,16 @@ public partial class MainWindow : Form
 
     private void MainWindow_Load(object sender, EventArgs e)
     {
-        Adb.Server.StartServer(Adb.AdbPath, true);
+        AdbServerStatus status = Adb.UpdateServerStatus();
+
+        if (status.IsRunning && status.Version >= AdbServer.RequiredAdbVersion)
+        {
+            // using an already runned server.
+        }
+        else
+        {
+            Adb.Server.StartServer(Adb.AdbPath, true);
+        }
 
         rcs = new();
 
@@ -107,7 +116,7 @@ public partial class MainWindow : Form
             SDKVersionOut.Text = "";
             BuildFingerprintOut.Text = "";
 
-            DeviceGroup.Enabled = Adb.Server.GetStatus(false).IsRunning;
+            DeviceGroup.Enabled = Adb.LastServerStatus.IsRunning;
             UtilsGroup.Enabled = false;
         }
 
@@ -116,7 +125,7 @@ public partial class MainWindow : Form
 
     public bool RefreshServerStatus()
     {
-        AdbServerStatus status = Adb.Server.GetStatus(false);
+        AdbServerStatus status = Adb.UpdateServerStatus();
 
         if (status.IsRunning)
         {
