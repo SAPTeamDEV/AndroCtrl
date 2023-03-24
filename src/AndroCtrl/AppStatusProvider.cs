@@ -27,17 +27,17 @@ namespace AndroCtrl
         {
             if (statusbar.Items.Count > 0)
             {
-                if (progressbar != null)
-                {
-                    throw new InvalidOperationException("Can't remove an unfinished progress bar.");
-                }
-
                 foreach (var packet in packets)
                 {
                     if (packet.Value.progressBar != progressbar)
                     {
                         Clear(packet.Key);
                     }
+                }
+
+                if (progressbar != null)
+                {
+                    throw new InvalidOperationException("Can't remove an unfinished progress bar.");
                 }
             }
         }
