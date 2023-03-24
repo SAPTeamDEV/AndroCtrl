@@ -8,9 +8,10 @@ using SAPTeam.CommonTK;
 
 namespace AndroCtrl
 {
-    public class AppStatusProvider : IStatusProvider
+    public class AppStatusProvider : IProgressStatusProvider
     {
         StatusStrip statusbar;
+        ToolStripProgressBar progressbar;
 
         public AppStatusProvider(StatusStrip statusbar)
         {
@@ -25,6 +26,38 @@ namespace AndroCtrl
         public void Write(string message)
         {
             statusbar.Items.Add(message);
+        }
+
+        public void Write(string message, ProgressBarType type)
+        {
+            Write(message);
+
+            switch (type)
+            {
+                case ProgressBarType.None:
+                    throw new ArgumentException("type can't be None.");
+                case ProgressBarType.Wait:
+                    progressbar = new();
+                    progressbar.Style = ProgressBarStyle.Marquee;
+                    statusbar.Items.Add(progressbar);
+                    break;
+                case ProgressBarType.Block:
+                    progressbar = new();
+                    statusbar.Items.Add(progressbar);
+                    break;
+            }
+        }
+
+        public void Increment(int value)
+        {
+            if (value == -1)
+            {
+                progressbar.PerformStep();
+            }
+            else
+            {
+                progressbar.Increment(value);
+            }
         }
     }
 }
