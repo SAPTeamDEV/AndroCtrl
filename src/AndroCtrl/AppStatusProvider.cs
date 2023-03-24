@@ -102,7 +102,7 @@ namespace AndroCtrl
                 progressbar.Increment(value);
             }
 
-            if (progressbar.Value >= 100)
+            if (gc && progressbar.Value >= 100)
             {
                 Clear(packets.Where((x) => x.Value.progressBar == progressbar).First().Key);
             }
