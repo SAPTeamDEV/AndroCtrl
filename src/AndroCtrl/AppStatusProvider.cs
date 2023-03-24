@@ -65,6 +65,10 @@ namespace AndroCtrl
             {
                 throw new InvalidOperationException("Can't register more than one block progress bar.");
             }
+            if (packets.ContainsKey(message))
+            {
+                throw new ArgumentException("Can't use a duplicated status message: ", message);
+            }
 
             ToolStripLabel label = new(message);
             statusbar.Items.Add(label);
