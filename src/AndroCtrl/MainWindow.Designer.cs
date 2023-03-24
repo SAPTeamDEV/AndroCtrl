@@ -51,6 +51,7 @@ partial class MainWindow
         KillServerButton = new Button();
         RestartServerButton = new Button();
         StartServerButton = new Button();
+        StatusBar = new StatusStrip();
         DeviceGroup.SuspendLayout();
         UtilsGroup.SuspendLayout();
         AdbServerGroup.SuspendLayout();
@@ -290,11 +291,21 @@ partial class MainWindow
         StartServerButton.UseVisualStyleBackColor = true;
         StartServerButton.Click += StartServerButton_Click;
         // 
+        // StatusBar
+        // 
+        StatusBar.Location = new Point(0, 450);
+        StatusBar.Name = "StatusBar";
+        StatusBar.Size = new Size(800, 22);
+        StatusBar.SizingGrip = false;
+        StatusBar.TabIndex = 3;
+        StatusBar.Text = "statusStrip1";
+        // 
         // MainWindow
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(800, 450);
+        ClientSize = new Size(800, 472);
+        Controls.Add(StatusBar);
         Controls.Add(AdbServerGroup);
         Controls.Add(UtilsGroup);
         Controls.Add(DeviceGroup);
@@ -312,6 +323,7 @@ partial class MainWindow
         AdbServerGroup.ResumeLayout(false);
         AdbServerGroup.PerformLayout();
         ResumeLayout(false);
+        PerformLayout();
     }
 
     #endregion
@@ -338,4 +350,5 @@ partial class MainWindow
     private Button KillServerButton;
     private Button RestartServerButton;
     private Button StartServerButton;
+    private StatusStrip StatusBar;
 }

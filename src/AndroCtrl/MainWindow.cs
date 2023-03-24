@@ -32,6 +32,8 @@ public partial class MainWindow : Form
 
     private void MainWindow_Load(object sender, EventArgs e)
     {
+        Interact.AssignStatus(new AppStatusProvider(StatusBar));
+
         AdbServerStatus status = Adb.UpdateServerStatus();
 
         if (status.IsRunning && status.Version >= AdbServer.RequiredAdbVersion)
