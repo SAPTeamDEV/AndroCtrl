@@ -8,42 +8,81 @@ using SAPTeam.CommonTK;
 
 namespace AndroCtrl
 {
-    public class AppStatusProvider : IProgressStatusProvider
+    public class AppStatusProvider : IProgressStatusProvider, IMultiStatusProvider
     {
-        StatusStrip statusbar;
+        readonly StatusStrip statusbar;
         ToolStripProgressBar progressbar;
 
-        public AppStatusProvider(StatusStrip statusbar)
+        bool gc;
+
+        readonly Dictionary<string, (ToolStripLabel label, ToolStripProgressBar progressBar)> packets = new();
+
+        public AppStatusProvider(StatusStrip statusbar, bool garbageCollection = true)
         {
             this.statusbar = statusbar;
+            gc = garbageCollection;
         }
 
         public void Clear()
         {
-            statusbar.Items.Clear();
+            if (statusbar.Items.Count > 0)
+            {
+                if (progressbar != null)
+                {
+                    throw new InvalidOperationException("Can't remove an unfinished progress bar.");
+                }
+
+                foreach (var packet in packets)
+                {
+                    if (packet.Value.progressBar != progressbar)
+                    {
+                        Clear(packet.Key);
+                    }
+                }
+            }
+        }
+
+        public void Clear(string message)
+        {
+            if (packets[message].progressBar == progressbar)
+            {
+                progressbar = null;
+            }
+
+            statusbar.Items.Remove(packets[message].label);
+            statusbar.Items.Remove(packets[message].progressBar);
+            packets.Remove(message);
         }
 
         public void Write(string message)
         {
-            statusbar.Items.Add(message);
+            throw new NotImplementedException();
         }
 
         public void Write(string message, ProgressBarType type)
         {
-            Write(message);
+            if (progressbar != null && type == ProgressBarType.Block)
+            {
+                throw new InvalidOperationException("Can't register more than one block progress bar.");
+            }
+
+            ToolStripLabel label = new(message);
+            statusbar.Items.Add(label);
 
             switch (type)
             {
                 case ProgressBarType.None:
                     throw new ArgumentException("type can't be None.");
                 case ProgressBarType.Wait:
-                    progressbar = new();
-                    progressbar.Style = ProgressBarStyle.Marquee;
-                    statusbar.Items.Add(progressbar);
+                    ToolStripProgressBar loadingbar = new();
+                    loadingbar.Style = ProgressBarStyle.Marquee;
+                    statusbar.Items.Add(loadingbar);
+                    packets[message] = (label, loadingbar);
                     break;
                 case ProgressBarType.Block:
                     progressbar = new();
                     statusbar.Items.Add(progressbar);
+                    packets[message] = (label, progressbar);
                     break;
             }
         }
@@ -57,6 +96,11 @@ namespace AndroCtrl
             else
             {
                 progressbar.Increment(value);
+            }
+
+            if (progressbar.Value >= 100)
+            {
+                Clear(packets.Where((x) => x.Value.progressBar == progressbar).First().Key);
             }
         }
     }
