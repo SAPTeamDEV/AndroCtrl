@@ -1,6 +1,3 @@
 [submodule "Externals/AndroCtrl.Protocols.AndroidDebugBridge"]
 	path = Externals/AndroCtrl.Protocols.AndroidDebugBridge
 	url = https://github.com/SAPTeamDEV/AndroCtrl.Protocols.AndroidDebugBridge.git
-[submodule "Externals/CommonTK"]
-	path = Externals/CommonTK
-	url = https://github.com/SAPTeamDEV/CommonTK.git
