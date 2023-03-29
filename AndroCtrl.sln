@@ -20,10 +20,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Externals", "Externals", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AndroCtrl.Protocols.AndroidDebugBridge", "externals\AndroCtrl.Protocols.AndroidDebugBridge\AndroCtrl.Protocols.AndroidDebugBridge\AndroCtrl.Protocols.AndroidDebugBridge.csproj", "{A03EE881-AF51-4CB1-A801-B611EAC3F12E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonTK", "externals\CommonTK\src\CommonTK\CommonTK.csproj", "{9716987E-246F-44B1-915B-592FAFBD2550}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonTK.Console", "externals\CommonTK\src\CommonTK.Console\CommonTK.Console.csproj", "{2E34EF31-EEFF-40E8-A388-253019013E1C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,22 +42,12 @@ Global
 		{A03EE881-AF51-4CB1-A801-B611EAC3F12E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A03EE881-AF51-4CB1-A801-B611EAC3F12E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A03EE881-AF51-4CB1-A801-B611EAC3F12E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9716987E-246F-44B1-915B-592FAFBD2550}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9716987E-246F-44B1-915B-592FAFBD2550}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9716987E-246F-44B1-915B-592FAFBD2550}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9716987E-246F-44B1-915B-592FAFBD2550}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2E34EF31-EEFF-40E8-A388-253019013E1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2E34EF31-EEFF-40E8-A388-253019013E1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2E34EF31-EEFF-40E8-A388-253019013E1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2E34EF31-EEFF-40E8-A388-253019013E1C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{A03EE881-AF51-4CB1-A801-B611EAC3F12E} = {1E662192-7103-464C-A244-3CDE6A6AA912}
-		{9716987E-246F-44B1-915B-592FAFBD2550} = {1E662192-7103-464C-A244-3CDE6A6AA912}
-		{2E34EF31-EEFF-40E8-A388-253019013E1C} = {1E662192-7103-464C-A244-3CDE6A6AA912}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1CA58407-EB48-46F3-87EA-1FA8FF6E3A88}
