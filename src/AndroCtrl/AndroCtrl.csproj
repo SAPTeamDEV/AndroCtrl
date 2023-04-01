@@ -12,10 +12,12 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebugType>full</DebugType>
+    <NoWarn>1701;1702;8603;8602;8601;8625;8622</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DebugType>full</DebugType>
+    <NoWarn>1701;1702;8603;8602;8601;8625;8622</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

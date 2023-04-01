@@ -9,7 +9,7 @@ using Tmds.MDns;
 
 namespace MulticastDNSDiscovery;
 
-class mDnsServiceBrowser
+class MDnsServiceBrowser
 {
     public static void Main(string[] args)
     {
@@ -20,31 +20,31 @@ class mDnsServiceBrowser
         }
 
         ServiceBrowser serviceBrowser = new ServiceBrowser();
-        serviceBrowser.ServiceAdded += onServiceAdded;
-        serviceBrowser.ServiceRemoved += onServiceRemoved;
-        serviceBrowser.ServiceChanged += onServiceChanged;
+        serviceBrowser.ServiceAdded += OnServiceAdded;
+        serviceBrowser.ServiceRemoved += OnServiceRemoved;
+        serviceBrowser.ServiceChanged += OnServiceChanged;
 
         Console.WriteLine("Browsing for type: {0}", serviceType);
         serviceBrowser.StartBrowse(serviceType);
         Console.ReadLine();
     }
 
-    static void onServiceChanged(object sender, ServiceAnnouncementEventArgs e)
+    static void OnServiceChanged(object? sender, ServiceAnnouncementEventArgs e)
     {
-        printService('~', e.Announcement);
+        PrintService('~', e.Announcement);
     }
 
-    static void onServiceRemoved(object sender, ServiceAnnouncementEventArgs e)
+    static void OnServiceRemoved(object? sender, ServiceAnnouncementEventArgs e)
     {
-        printService('-', e.Announcement);
+        PrintService('-', e.Announcement);
     }
 
-    static void onServiceAdded(object sender, ServiceAnnouncementEventArgs e)
+    static void OnServiceAdded(object? sender, ServiceAnnouncementEventArgs e)
     {
-        printService('+', e.Announcement);
+        PrintService('+', e.Announcement);
     }
 
-    static void printService(char startChar, ServiceAnnouncement service)
+    static void PrintService(char startChar, ServiceAnnouncement service)
     {
         Console.WriteLine("{0} '{1}' on {2}", startChar, service.Instance, service.NetworkInterface.Name);
         Console.WriteLine("\tHost: {0} ({1})", service.Hostname, string.Join(", ", service.Addresses));

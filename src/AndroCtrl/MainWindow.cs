@@ -20,8 +20,9 @@ public partial class MainWindow : Form
 {
     bool isUpdating;
     RemoteConnectionService rcs;
+#if !DEBUG
     DeviceMonitor dm;
-    Timer timer;
+#endif
 
     AndroidDevice Device => Adb.DefaultDevice;
 

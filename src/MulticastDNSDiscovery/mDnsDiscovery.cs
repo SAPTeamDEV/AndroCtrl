@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MulticastDNSDiscovery;
 
-class mDnsDiscovery
+class MDnsDiscovery
 {
     public static void Main(string[] args)
     {

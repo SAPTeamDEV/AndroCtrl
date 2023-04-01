@@ -12,11 +12,11 @@ namespace MulticastDNSDiscovery
         {
             if (args.Length >= 1 && args[0] == "browser")
             {
-                mDnsServiceBrowser.Main(new string[1] { args[1] });
+                MDnsServiceBrowser.Main(new string[1] { args[1] });
             }
             else
             {
-                mDnsDiscovery.Main(Array.Empty<string>());
+                MDnsDiscovery.Main(Array.Empty<string>());
             }
         }
     }
