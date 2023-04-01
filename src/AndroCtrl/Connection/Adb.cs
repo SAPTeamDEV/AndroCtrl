@@ -2,7 +2,7 @@
 using System.Diagnostics;
 
 using AndroCtrl.Android;
-using AndroCtrl.Protocols.AndroidDebugBridge;
+using SAPTeam.AndroCtrl.Adb;
 
 namespace AndroCtrl.Connection;
 

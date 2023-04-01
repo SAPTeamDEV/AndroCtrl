@@ -3,7 +3,7 @@
 ## Instruction
 Control your device with Beautiful and Amazing tools!
 
-This app uses underlying [AndroCtrl.Protocols.AndroidDebugBridge](https://github.com/SAPTeamDEV/AndroCtrl.Protocols.AndroidDebugBridge) library to communicate Directly with `adb server`. This method is very Fast and reliable than communicating with `adb.exe` executable.
+This app uses underlying [SAPTeam.AndroCtrl.Adb](https://github.com/SAPTeamDEV/SAPTeam.AndroCtrl.Adb) library to communicate Directly with `adb server`. This method is very Fast and reliable than communicating with `adb.exe` executable.
 
 Currently AndroCtrl is in Early Access stage and it's features are being developed.
 

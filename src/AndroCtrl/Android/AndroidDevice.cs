@@ -7,10 +7,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 using AndroCtrl.Connection;
-using AndroCtrl.Protocols.AndroidDebugBridge;
-using AndroCtrl.Protocols.AndroidDebugBridge.DeviceCommands;
-using AndroCtrl.Protocols.AndroidDebugBridge.Exceptions;
-using AndroCtrl.Protocols.AndroidDebugBridge.Receivers;
+using SAPTeam.AndroCtrl.Adb;
+using SAPTeam.AndroCtrl.Adb.DeviceCommands;
+using SAPTeam.AndroCtrl.Adb.Exceptions;
+using SAPTeam.AndroCtrl.Adb.Receivers;
 using AndroCtrl.Services;
 
 namespace AndroCtrl.Android;

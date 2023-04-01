@@ -29,7 +29,7 @@
 
   <ItemGroup>
     <PackageReference Include="QRCoder" Version="1.4.3" />
-    <PackageReference Include="SAPTeam.CommonTK.Console" Version="1.1.8" />
+    <PackageReference Include="SAPTeam.CommonTK.Console" Version="1.4.4" />
     <PackageReference Include="Tmds.MDns" Version="0.7.1" />
   </ItemGroup>
 
@@ -39,7 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\externals\AndroCtrl.Protocols.AndroidDebugBridge\AndroCtrl.Protocols.AndroidDebugBridge\AndroCtrl.Protocols.AndroidDebugBridge.csproj" />
+    <ProjectReference Include="..\..\Externals\AndroCtrl.Adb\AndroCtrl.Adb\AndroCtrl.Adb.csproj" />
   </ItemGroup>
 
 </Project>

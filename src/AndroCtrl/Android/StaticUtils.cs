@@ -6,8 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using AndroCtrl.Connection;
 
-using AndroCtrl.Protocols.AndroidDebugBridge;
-using AndroCtrl.Protocols.AndroidDebugBridge.DeviceCommands;
+using SAPTeam.AndroCtrl.Adb;
+using SAPTeam.AndroCtrl.Adb.DeviceCommands;
 
 namespace AndroCtrl.Android
 {

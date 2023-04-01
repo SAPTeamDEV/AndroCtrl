@@ -2,7 +2,7 @@ using System.Net;
 
 using AndroCtrl.Connection;
 using AndroCtrl.Dialogs;
-using AndroCtrl.Protocols.AndroidDebugBridge;
+using SAPTeam.AndroCtrl.Adb;
 using AndroCtrl.Services;
 
 using static SAPTeam.CommonTK.Console.ConsoleManager;
