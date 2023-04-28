@@ -25,7 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\.editorconfig" Link=".editorconfig" />
     <None Include="Connection\MulticastDNS.cs" />
   </ItemGroup>
 
@@ -33,15 +32,11 @@
     <PackageReference Include="QRCoder" Version="1.4.3" />
     <PackageReference Include="SAPTeam.CommonTK.Console" Version="1.4.4" />
     <PackageReference Include="Tmds.MDns" Version="0.7.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-
     <PackageReference Include="Nerdbank.GitVersioning" Version="3.5.119" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Externals\AndroCtrl.Adb\AndroCtrl.Adb\AndroCtrl.Adb.csproj" />
+    <ProjectReference Include="..\..\Externals\AndroCtrl.Adb\src\AndroCtrl.Adb.csproj" />
   </ItemGroup>
 
 </Project>

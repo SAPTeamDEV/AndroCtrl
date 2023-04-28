@@ -34,3 +34,4 @@ jobs:
         path: |
           src/AndroCtrl/bin/Debug/net6.0-windows
           !src/AndroCtrl/bin/Debug/net6.0-windows/*.pdb
+          !src/AndroCtrl/bin/Debug/net6.0-windows/*.xml

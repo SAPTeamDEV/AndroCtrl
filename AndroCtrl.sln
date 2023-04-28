@@ -5,9 +5,8 @@ VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8B158DD8-7764-433D-87BE-F95E412C5034}"
 	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
 		README.md = README.md
-		version.json = version.json
+		version.json = src\AndroCtrl\version.json
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AndroCtrl", "src\AndroCtrl\AndroCtrl.csproj", "{9A6BBBEF-70E0-4122-89B4-38D3BA94FC98}"
@@ -18,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MulticastDNSDiscovery", "sr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Externals", "Externals", "{1E662192-7103-464C-A244-3CDE6A6AA912}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AndroCtrl.Adb", "Externals\AndroCtrl.Adb\AndroCtrl.Adb\AndroCtrl.Adb.csproj", "{116D3993-5963-4B80-8987-0A545F23306B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AndroCtrl.Adb", "Externals\AndroCtrl.Adb\src\AndroCtrl.Adb.csproj", "{116D3993-5963-4B80-8987-0A545F23306B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
