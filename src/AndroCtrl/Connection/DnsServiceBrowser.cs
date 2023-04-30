@@ -2,7 +2,7 @@
 
 using Tmds.MDns;
 
-namespace AndroCtrl.Connection;
+namespace SAPTeam.AndroCtrl.Connection;
 
 public class DnsServiceBrowser : IMulticastDNS
 {

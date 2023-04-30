@@ -1,4 +1,4 @@
-﻿namespace AndroCtrl.Plugin;
+﻿namespace SAPTeam.AndroCtrl.Plugin;
 
 public interface ICommand
 {

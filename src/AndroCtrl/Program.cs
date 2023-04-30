@@ -1,6 +1,6 @@
 using SAPTeam.CommonTK;
 
-namespace AndroCtrl;
+namespace SAPTeam.AndroCtrl;
 
 internal static class Program
 {

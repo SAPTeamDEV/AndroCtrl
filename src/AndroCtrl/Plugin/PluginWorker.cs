@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace AndroCtrl.Plugin;
+namespace SAPTeam.AndroCtrl.Plugin;
 
 internal class PluginWorker
 {

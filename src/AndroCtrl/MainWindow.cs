@@ -1,20 +1,20 @@
 using System.Net;
-
-using AndroCtrl.Connection;
 using AndroCtrl.Dialogs;
 using SAPTeam.AndroCtrl.Adb;
-using AndroCtrl.Services;
 
 using static SAPTeam.CommonTK.Console.ConsoleManager;
 using SAPTeam.CommonTK;
 using SAPTeam.CommonTK.Contexts;
 using Timer = SAPTeam.CommonTK.Timer;
 using System.Net.Sockets;
-using AndroCtrl.Android;
+using SAPTeam.AndroCtrl.Android;
 using System.Reflection;
 using System.Diagnostics;
+using SAPTeam.AndroCtrl.Connection;
+using SAPTeam.AndroCtrl;
+using SAPTeam.AndroCtrl.Services;
 
-namespace AndroCtrl;
+namespace SAPTeam.AndroCtrl;
 
 public partial class MainWindow : Form
 {
@@ -24,7 +24,7 @@ public partial class MainWindow : Form
     DeviceMonitor dm;
 #endif
 
-    AndroidDevice Device => Adb.DefaultDevice;
+    AndroidDevice Device => AdbInterface.DefaultDevice;
 
     public MainWindow()
     {
@@ -35,19 +35,19 @@ public partial class MainWindow : Form
     {
         Interact.AssignStatus(new AppStatusProvider(StatusBar));
 
-        AdbServerStatus status = Adb.UpdateServerStatus();
+        AdbServerStatus status = AdbInterface.UpdateServerStatus();
 
         if (status.IsRunning && status.Version >= AdbServer.RequiredAdbVersion)
         {
             // using an already runned server.
-            if (Adb.AdbPath != null)
+            if (AdbInterface.AdbPath != null)
             {
-                Adb.Server.UpdateAdbPath(Adb.AdbPath);
+                AdbInterface.Server.UpdateAdbPath(AdbInterface.AdbPath);
             }
         }
-        else if (Adb.AdbPath != null)
+        else if (AdbInterface.AdbPath != null)
         {
-            Adb.Server.StartServer(Adb.AdbPath, true);
+            AdbInterface.Server.StartServer(AdbInterface.AdbPath, true);
         }
         else
         {
@@ -78,12 +78,12 @@ public partial class MainWindow : Form
     {
         if (RefreshServerStatus())
         {
-            Adb.UpdateDevices();
+            AdbInterface.UpdateDevices();
         }
         else
         {
-            Adb.Devices.Clear();
-            Adb.DefaultDevice = null;
+            AdbInterface.Devices.Clear();
+            AdbInterface.DefaultDevice = null;
         }
         RefreshDevicesGroup();
     }
@@ -95,7 +95,7 @@ public partial class MainWindow : Form
             isUpdating = true;
             DeviceSelector.Items.Clear();
 
-            foreach (var device in Adb.Devices)
+            foreach (var device in AdbInterface.Devices)
             {
                 DeviceSelector.Items.Add(device.Value);
             }
@@ -127,7 +127,7 @@ public partial class MainWindow : Form
             SDKVersionOut.Text = "";
             BuildFingerprintOut.Text = "";
 
-            DeviceGroup.Enabled = Adb.LastServerStatus.IsRunning;
+            DeviceGroup.Enabled = AdbInterface.LastServerStatus.IsRunning;
             UtilsGroup.Enabled = false;
         }
 
@@ -136,13 +136,13 @@ public partial class MainWindow : Form
 
     public bool RefreshServerStatus()
     {
-        AdbServerStatus status = Adb.UpdateServerStatus();
+        AdbServerStatus status = AdbInterface.UpdateServerStatus();
 
         if (status.IsRunning)
         {
             ServerStatus.Text = $"Adb Server v{status.Version} is running";
 
-            RestartServerButton.Enabled = Adb.Server.HasAdbPath;
+            RestartServerButton.Enabled = AdbInterface.Server.HasAdbPath;
             StartServerButton.Enabled = false;
             KillServerButton.Enabled = true;
         }
@@ -151,7 +151,7 @@ public partial class MainWindow : Form
             ServerStatus.Text = "Adb Server is Offline";
 
             RestartServerButton.Enabled = false;
-            StartServerButton.Enabled = Adb.Server.HasAdbPath;
+            StartServerButton.Enabled = AdbInterface.Server.HasAdbPath;
             KillServerButton.Enabled = false;
         }
 
@@ -160,7 +160,7 @@ public partial class MainWindow : Form
 
     private void DeviceSelector_SelectedIndexChanged(object sender, EventArgs e)
     {
-        Adb.DefaultDevice = (AndroidDevice)DeviceSelector.SelectedItem;
+        AdbInterface.DefaultDevice = (AndroidDevice)DeviceSelector.SelectedItem;
         RefreshDevicesGroup();
     }
 
@@ -225,7 +225,7 @@ public partial class MainWindow : Form
         new Thread(() =>
         {
             using ConsoleWindow console = new();
-            var shell = Adb.Client.StartShell(Adb.DDID);
+            var shell = AdbInterface.Client.StartShell(AdbInterface.DDID);
             Console.Write(shell.GetPrompt(false));
             try
             {
@@ -256,22 +256,22 @@ public partial class MainWindow : Form
 
     private void RestartServerButton_Click(object sender, EventArgs e)
     {
-        Adb.Client.KillAdb();
+        AdbInterface.Client.KillAdb();
         Refresh(sender, e);
         Thread.Sleep(100);
-        Adb.Server.RestartServer();
+        AdbInterface.Server.RestartServer();
         Refresh(sender, e);
     }
 
     private void StartServerButton_Click(object sender, EventArgs e)
     {
-        Adb.Server.RestartServer();
+        AdbInterface.Server.RestartServer();
         Refresh(sender, e);
     }
 
     private void KillServerButton_Click(object sender, EventArgs e)
     {
-        Adb.Client.KillAdb();
+        AdbInterface.Client.KillAdb();
         Refresh(sender, e);
     }
 }

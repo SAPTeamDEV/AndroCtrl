@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AndroCtrl.Services.EventArgs
+using SAPTeam.AndroCtrl.Services;
+
+namespace SAPTeam.AndroCtrl.Services.EventArgs
 {
     internal class ServiceStatusEventArgs : IServiceEventArgs
     {

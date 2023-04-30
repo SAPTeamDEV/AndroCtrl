@@ -1,9 +1,9 @@
 ﻿using System.Net;
 
-using AndroCtrl.Connection;
-using AndroCtrl.Services.EventArgs;
+using SAPTeam.AndroCtrl.Connection;
+using SAPTeam.AndroCtrl.Services.EventArgs;
 
-namespace AndroCtrl.Services;
+namespace SAPTeam.AndroCtrl.Services;
 
 public class RemoteConnectionService : Service, IService
 {
@@ -14,7 +14,7 @@ public class RemoteConnectionService : Service, IService
         mdns = new(DnsServiceTypes.AdbConnect);
         mdns.NetworkFound += (ep) =>
         {
-            Adb.Client.Connect(ep);
+            AdbInterface.Client.Connect(ep);
             OnExecute(ServiceEventArgs.Empty);
         };
     }

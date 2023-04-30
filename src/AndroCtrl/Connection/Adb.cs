@@ -1,12 +1,13 @@
 ﻿using System.ComponentModel;
 using System.Diagnostics;
 
-using AndroCtrl.Android;
+using SAPTeam.AndroCtrl.Android;
+
 using SAPTeam.AndroCtrl.Adb;
 
-namespace AndroCtrl.Connection;
+namespace SAPTeam.AndroCtrl.Connection;
 
-public static class Adb
+public static class AdbInterface
 {
     public static AdbClient Client { get; }
     public static AdbServer Server { get; }
@@ -19,7 +20,7 @@ public static class Adb
 
     public static string AdbPath { get; }
 
-    static Adb()
+    static AdbInterface()
     {
         Client = new AdbClient();
         Server = new AdbServer(Client, Factories.AdbCommandLineClientFactory);
@@ -102,7 +103,7 @@ public static class Adb
             }
             catch (Exception)
             {
-                
+
             }
         }
 

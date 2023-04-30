@@ -10,8 +10,10 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using AndroCtrl.Connection;
-using AndroCtrl.Services;
+using SAPTeam.AndroCtrl.Services;
+
+using SAPTeam.AndroCtrl;
+using SAPTeam.AndroCtrl.Connection;
 
 namespace AndroCtrl.Dialogs
 {
@@ -45,7 +47,7 @@ namespace AndroCtrl.Dialogs
         private void ConnectButton_Click(object sender, EventArgs e)
         {
             DnsEndPoint ep = new(IPAddressIn.Text, int.Parse(PortIn.Text));
-            Adb.Client.Connect(ep);
+            AdbInterface.Client.Connect(ep);
 
             if (!Program.Settings.IPAddresses.Contains(ep.Host))
             {

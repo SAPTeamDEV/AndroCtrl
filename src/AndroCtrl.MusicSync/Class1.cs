@@ -1,8 +1,8 @@
 ﻿using System.Windows.Forms;
 
-using AndroCtrl.Plugin;
+using SAPTeam.AndroCtrl.Plugin;
 
-namespace AndroCtrl.MusicSync;
+namespace SAPTeam.AndroCtrl.MusicSync;
 
 public class MusicSync : ICommand
 {

@@ -5,15 +5,14 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-
-using AndroCtrl.Connection;
 using SAPTeam.AndroCtrl.Adb;
 using SAPTeam.AndroCtrl.Adb.DeviceCommands;
 using SAPTeam.AndroCtrl.Adb.Exceptions;
 using SAPTeam.AndroCtrl.Adb.Receivers;
-using AndroCtrl.Services;
+using SAPTeam.AndroCtrl.Services;
+using SAPTeam.AndroCtrl.Connection;
 
-namespace AndroCtrl.Android;
+namespace SAPTeam.AndroCtrl.Android;
 
 public partial class AndroidDevice
 {
@@ -34,7 +33,7 @@ public partial class AndroidDevice
         {
             if (!HasShell && IsUsable)
             {
-                _shell = Adb.Client.StartShell(DeviceID);
+                _shell = AdbInterface.Client.StartShell(DeviceID);
                 return _shell;
             }
             else
@@ -117,7 +116,7 @@ public partial class AndroidDevice
             {
                 Shell.Dispose();
             }
-            Adb.Client.Disconnect(EndPoint);
+            AdbInterface.Client.Disconnect(EndPoint);
         }
         else
         {

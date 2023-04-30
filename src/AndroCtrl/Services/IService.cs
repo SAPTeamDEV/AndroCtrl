@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using AndroCtrl.Services.EventArgs;
+using SAPTeam.AndroCtrl.Services.EventArgs;
 
-namespace AndroCtrl.Services;
+namespace SAPTeam.AndroCtrl.Services;
 
 internal interface IService
 {

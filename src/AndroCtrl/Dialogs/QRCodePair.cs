@@ -1,7 +1,7 @@
 ﻿using System.Net;
 
-using AndroCtrl.Connection;
-using AndroCtrl.Services;
+using SAPTeam.AndroCtrl.Connection;
+using SAPTeam.AndroCtrl.Services;
 
 namespace AndroCtrl.Dialogs;
 
@@ -53,7 +53,7 @@ public partial class QRCodePair : Form
 
     private void Pair_Click(object sender, EventArgs e)
     {
-        Adb.Client.Pair(new(HostName.Text, int.Parse(Port.Text)), int.Parse(PairCode.Text));
+        AdbInterface.Client.Pair(new(HostName.Text, int.Parse(Port.Text)), int.Parse(PairCode.Text));
         this.Close();
     }
 }

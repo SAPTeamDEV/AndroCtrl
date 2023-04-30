@@ -6,10 +6,10 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-using AndroCtrl.Connection;
-using AndroCtrl.Services.EventArgs;
+using SAPTeam.AndroCtrl.Connection;
+using SAPTeam.AndroCtrl.Services.EventArgs;
 
-namespace AndroCtrl.Services
+namespace SAPTeam.AndroCtrl.Services
 {
     public class ReconnectionService : Service, IService
     {
@@ -32,7 +32,7 @@ namespace AndroCtrl.Services
                 await Task.Delay(delay);
                 try
                 {
-                    Adb.Client.Connect(ep);
+                    AdbInterface.Client.Connect(ep);
                     OnExecute(ServiceEventArgs.Empty);
                 }
                 catch (Exception) { }

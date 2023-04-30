@@ -6,8 +6,9 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
-    <StartupObject>AndroCtrl.Program</StartupObject>
+    <StartupObject>SAPTeam.AndroCtrl.Program</StartupObject>
     <BaseIntermediateOutputPath />
+    <RootNamespace>SAPTeam.AndroCtrl</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

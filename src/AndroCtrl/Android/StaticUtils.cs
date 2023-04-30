@@ -4,12 +4,12 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using AndroCtrl.Connection;
 
 using SAPTeam.AndroCtrl.Adb;
 using SAPTeam.AndroCtrl.Adb.DeviceCommands;
+using SAPTeam.AndroCtrl.Connection;
 
-namespace AndroCtrl.Android
+namespace SAPTeam.AndroCtrl.Android
 {
     public partial class AndroidDevice
     {
@@ -48,7 +48,7 @@ namespace AndroCtrl.Android
 
         public static void GatherDeviceInfo(DeviceData device, AndroidDevice dev)
         {
-            var props = Adb.Client.GetProperties(device);
+            var props = AdbInterface.Client.GetProperties(device);
 
             props.TryGetValue("ro.product.device", out string dName);
             props.TryGetValue("ro.product.model", out string model);

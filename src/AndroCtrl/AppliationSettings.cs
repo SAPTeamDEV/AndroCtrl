@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AndroCtrl;
+namespace SAPTeam.AndroCtrl;
 
 internal class AppliationSettings
 {

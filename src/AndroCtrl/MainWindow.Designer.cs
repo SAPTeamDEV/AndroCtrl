@@ -1,4 +1,4 @@
-﻿namespace AndroCtrl;
+﻿namespace SAPTeam.AndroCtrl;
 
 partial class MainWindow
 {

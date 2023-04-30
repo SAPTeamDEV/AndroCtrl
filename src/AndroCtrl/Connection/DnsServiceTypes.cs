@@ -1,4 +1,4 @@
-﻿namespace AndroCtrl.Connection;
+﻿namespace SAPTeam.AndroCtrl.Connection;
 
 public class DnsServiceTypes
 {

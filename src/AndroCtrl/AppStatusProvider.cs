@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using SAPTeam.CommonTK;
 
-namespace AndroCtrl
+namespace SAPTeam.AndroCtrl
 {
     public class AppStatusProvider : IProgressStatusProvider, IMultiStatusProvider
     {

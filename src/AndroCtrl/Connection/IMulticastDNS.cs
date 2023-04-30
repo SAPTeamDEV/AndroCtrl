@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace AndroCtrl.Connection;
+namespace SAPTeam.AndroCtrl.Connection;
 
 public interface IMulticastDNS
 {

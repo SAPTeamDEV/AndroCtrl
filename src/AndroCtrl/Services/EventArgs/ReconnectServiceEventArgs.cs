@@ -5,7 +5,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AndroCtrl.Services.EventArgs
+namespace SAPTeam.AndroCtrl.Services.EventArgs
 {
     public class ReconnectServiceEventArgs : IServiceEventArgs
     {

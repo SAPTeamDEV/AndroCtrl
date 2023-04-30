@@ -1,11 +1,11 @@
 ﻿using System.Net;
 
-using AndroCtrl.Connection;
-using AndroCtrl.Services.EventArgs;
-
 using QRCoder;
 
-namespace AndroCtrl.Services;
+using SAPTeam.AndroCtrl.Connection;
+using SAPTeam.AndroCtrl.Services.EventArgs;
+
+namespace SAPTeam.AndroCtrl.Services;
 
 internal class QRCodePairingService : Service, IService
 {
@@ -20,7 +20,7 @@ internal class QRCodePairingService : Service, IService
         mdns = new(DnsServiceTypes.DevicePairing);
         mdns.NetworkFound += (ep) =>
         {
-            Adb.Client.Pair(ep, int.Parse(pairCode));
+            AdbInterface.Client.Pair(ep, int.Parse(pairCode));
             OnExecute(ServiceEventArgs.Empty);
         };
     }
