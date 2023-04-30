@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		src\AndroCtrl\version.json = src\AndroCtrl\version.json
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AndroCtrl.Adb", "externals\AndroCtrl.Adb\src\AndroCtrl.Adb.csproj", "{70D643D6-091A-4497-A89A-EFF5627CB76B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{C31F9629-BC20-4721-AC6B-1067B8E32979}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C31F9629-BC20-4721-AC6B-1067B8E32979}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C31F9629-BC20-4721-AC6B-1067B8E32979}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70D643D6-091A-4497-A89A-EFF5627CB76B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70D643D6-091A-4497-A89A-EFF5627CB76B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70D643D6-091A-4497-A89A-EFF5627CB76B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70D643D6-091A-4497-A89A-EFF5627CB76B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
