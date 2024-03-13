@@ -70,7 +70,7 @@ public partial class MainWindow : Form
         };
 #endif
 
-        Text += $" v{FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion}";
+        Text += $" v{FileVersionInfo.GetVersionInfo(Program.ProcessPath).FileVersion}";
         Refresh(sender, e);
     }
 

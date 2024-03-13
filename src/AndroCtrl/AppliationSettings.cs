@@ -9,4 +9,5 @@ namespace SAPTeam.AndroCtrl;
 internal class AppliationSettings
 {
     public List<string> IPAddresses { get; set; } = new();
+    public List<string> SearchPaths { get; set; } = new();
 }

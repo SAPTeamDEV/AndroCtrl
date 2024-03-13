@@ -30,18 +30,6 @@ internal static class Program
     static internal AppliationSettings Settings { get; private set; }
 
     /// <summary>
-    /// Gets all supposed search path for finding requirements.
-    /// </summary>
-    public static List<string> SearchPaths { get; } = new()
-    {
-        "",
-        "bin",
-        @"C:\Windows",
-        @"C:\Windows\system32",
-        @"C:\Windows\adb"
-    };
-
-    /// <summary>
     ///  The main entry point for the application.
     /// </summary>
     [STAThread]
@@ -49,10 +37,31 @@ internal static class Program
     {
         Config = new(ConfigPath);
         Settings = Config.Prefs;
+        AddDefaultSearchPaths();
 
         // To customize application configuration such as set high DPI settings or default font,
         // see https://aka.ms/applicationconfiguration.
         ApplicationConfiguration.Initialize();
         Application.Run(new MainWindow());
+    }
+
+    static void AddDefaultSearchPaths()
+    {
+        List<string> searchPaths = new List<string>()
+        {
+            "",
+            "bin",
+            @"C:\Windows",
+            @"C:\Windows\system32",
+            @"C:\Windows\adb"
+        };
+
+        foreach (string path in searchPaths)
+        {
+            if (!Settings.SearchPaths.Contains(path))
+            {
+                Settings.SearchPaths.Add(path);
+            }
+        }
     }
 }

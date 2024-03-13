@@ -9,6 +9,8 @@ namespace SAPTeam.AndroCtrl.Connection;
 
 public static class AdbInterface
 {
+    private static string adbPath;
+
     public static AdbClient Client { get; }
     public static AdbServer Server { get; }
     public static AdbServerStatus LastServerStatus { get; private set; }
@@ -18,7 +20,26 @@ public static class AdbInterface
 
     public static DeviceData DDID => DefaultDevice.DeviceID;
 
-    public static string AdbPath { get; }
+    public static string AdbPath
+    {
+        get
+        {
+            return adbPath;
+        }
+        set
+        {
+            adbPath = value;
+
+            if (!string.IsNullOrEmpty(adbPath))
+            {
+                string adbDir = Directory.GetParent(adbPath).FullName;
+                if (!Program.Settings.SearchPaths.Contains(adbDir))
+                {
+                    Program.Settings.SearchPaths.Add(adbDir);
+                }
+            }
+        }
+    }
 
     static AdbInterface()
     {
@@ -26,7 +47,7 @@ public static class AdbInterface
         Server = new AdbServer(Client, Factories.AdbCommandLineClientFactory);
         Devices = new();
 
-        foreach (var path in Program.SearchPaths)
+        foreach (var path in Program.Settings.SearchPaths)
         {
             string adbpath = Path.Join(path, "adb.exe");
 
