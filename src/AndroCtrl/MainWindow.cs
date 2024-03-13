@@ -13,11 +13,14 @@ using System.Diagnostics;
 using SAPTeam.AndroCtrl.Connection;
 using SAPTeam.AndroCtrl;
 using SAPTeam.AndroCtrl.Services;
+using System.Media;
 
 namespace SAPTeam.AndroCtrl;
 
 public partial class MainWindow : Form
 {
+    bool IsLoaded = false;
+
     bool isUpdating;
     RemoteConnectionService rcs;
 #if !DEBUG
@@ -31,9 +34,12 @@ public partial class MainWindow : Form
         InitializeComponent();
     }
 
-    private void MainWindow_Load(object sender, EventArgs e)
+    private async void MainWindow_Load(object sender, EventArgs e)
     {
         Interact.AssignStatus(new AppStatusProvider(StatusBar));
+        Interact.SetStatus("Waiting for Adb...", ProgressBarType.Wait);
+
+        await Task.Delay(250);
 
         AdbServerStatus status = AdbInterface.UpdateServerStatus();
 
@@ -54,13 +60,13 @@ public partial class MainWindow : Form
             throw new InvalidOperationException("Adb server is not running in this machine and adb executable is not found.");
         }
 
+        Interact.ClearStatus("Waiting for Adb...");
+        Interact.SetStatus("Starting Services...", ProgressBarType.Wait);
+
         rcs = new();
 
 #if !DEBUG
-        dm = new(new AdbSocket(new IPEndPoint(IPAddress.Loopback, AdbClient.AdbServerPort)));
-        dm.DeviceConnected += Refresh;
-        dm.DeviceDisconnected += Refresh;
-        dm.DeviceChanged += Refresh;
+        CreateDeviceMonitor();
 #else
         Text += " [Debug]";
         rcs.TaskExecuted += (obj, s) =>
@@ -70,12 +76,28 @@ public partial class MainWindow : Form
         };
 #endif
 
+        IsLoaded = true;
+        Interact.ClearStatus("Starting Services...");
+
         Text += $" v{FileVersionInfo.GetVersionInfo(Program.ProcessPath).FileVersion}";
         Refresh(sender, e);
+        MainWindow_Activated(sender, e);
     }
+
+#if !DEBUG
+    void CreateDeviceMonitor()
+    {
+        dm = new(new AdbSocket(new IPEndPoint(IPAddress.Loopback, AdbClient.AdbServerPort)));
+        dm.DeviceConnected += Refresh;
+        dm.DeviceDisconnected += Refresh;
+        dm.DeviceChanged += Refresh;
+    }
+#endif
 
     public void Refresh(object? sender, EventArgs e)
     {
+        Interact.SetStatus("Updating List...", ProgressBarType.Wait);
+
         if (RefreshServerStatus())
         {
             AdbInterface.UpdateDevices();
@@ -86,6 +108,8 @@ public partial class MainWindow : Form
             AdbInterface.DefaultDevice = null;
         }
         RefreshDevicesGroup();
+
+        Interact.ClearStatus("Updating List...");
     }
 
     public void RefreshDevicesGroup()
@@ -184,6 +208,8 @@ public partial class MainWindow : Form
 
     private void MainWindow_Activated(object sender, EventArgs e)
     {
+        if (!IsLoaded) return;
+
         rcs.Start(true);
 #if !DEBUG
         dm.Start();
@@ -195,6 +221,8 @@ public partial class MainWindow : Form
 
     private void MainWindow_Deactivate(object sender, EventArgs e)
     {
+        if (!IsLoaded) return;
+
         rcs.Stop();
 #if !DEBUG
         dm.Stop();
@@ -256,22 +284,29 @@ public partial class MainWindow : Form
 
     private void RestartServerButton_Click(object sender, EventArgs e)
     {
-        AdbInterface.Client.KillAdb();
-        Refresh(sender, e);
+        KillServerButton_Click(sender, e);
         Thread.Sleep(100);
-        AdbInterface.Server.RestartServer();
-        Refresh(sender, e);
+        StartServerButton_Click(sender, e);
     }
 
-    private void StartServerButton_Click(object sender, EventArgs e)
+    private async void StartServerButton_Click(object sender, EventArgs e)
     {
+        Interact.SetStatus("Starting Adb server...", ProgressBarType.Wait);
+        await Task.Delay(100);
         AdbInterface.Server.RestartServer();
         Refresh(sender, e);
+#if !DEBUG
+        CreateDeviceMonitor();
+#endif
+        Interact.ClearStatus("Starting Adb server...");
     }
 
     private void KillServerButton_Click(object sender, EventArgs e)
     {
         AdbInterface.Client.KillAdb();
         Refresh(sender, e);
+#if !DEBUG
+        dm.Dispose();
+#endif
     }
 }
