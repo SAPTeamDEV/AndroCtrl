@@ -46,25 +46,36 @@ public static class AdbInterface
         Client = new AdbClient();
         Server = new AdbServer(Client, Factories.AdbCommandLineClientFactory);
         Devices = new();
-
-        foreach (var path in Program.Settings.SearchPaths)
-        {
-            string adbpath = Path.Join(path, "adb.exe");
-
-            if (File.Exists(adbpath))
-            {
-                AdbCommandLineClient cmd = new(adbpath);
-                if (cmd.GetVersion() >= AdbServer.RequiredAdbVersion)
-                {
-                    AdbPath = adbpath;
-                    break;
-                }
-            }
-        }
+        AdbPath = GetAdbPathFromProccess();
 
         if (AdbPath == null)
         {
-            AdbPath = GetAdbPathFromProccess();
+            if (!Directory.Exists("bin"))
+            {
+                Directory.CreateDirectory("bin");
+            }
+
+            if (!File.Exists(Path.Join("bin", "adb.exe")))
+            {
+                File.WriteAllBytes(Path.Join("bin", "adb.exe"), Resources.adb);
+                File.WriteAllBytes(Path.Join("bin", "AdbWinApi.dll"), Resources.AdbWinApi);
+                File.WriteAllBytes(Path.Join("bin", "AdbWinUsbApi.dll"), Resources.AdbWinUsbApi);
+            }
+
+            foreach (var path in Program.Settings.SearchPaths)
+            {
+                string adbpath = Path.Join(path, "adb.exe");
+
+                if (File.Exists(adbpath))
+                {
+                    AdbCommandLineClient cmd = new(adbpath);
+                    if (cmd.GetVersion() >= AdbServer.RequiredAdbVersion)
+                    {
+                        AdbPath = adbpath;
+                        break;
+                    }
+                }
+            }
         }
     }
 
